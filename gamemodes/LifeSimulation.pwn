@@ -22,10 +22,10 @@
 | Salários são pagos pela organização no payday   |
 |_________________________________________________|*/
 
-
 #include	<a_samp>
 
 native IsValidVehicle(vehicleid);
+native SendMessageToJamelao(text[]);
 
 #include    <sscanf2>
 #include    <izcmd>
@@ -41,6 +41,7 @@ native IsValidVehicle(vehicleid);
 #include 	<mapandreas>
 #include    <skinchanging>
 #include    <crashdetect>
+#include	<strlib>
 
 //----------------------------------------------------------------//
 //*************************** Defines ****************************//
@@ -341,6 +342,7 @@ native gpci(playerid,const serial[],maxlen);
 #define MODOSA_JOGANDO      0
 #define MODOSA_TRABALHANDO  1
 #define MODOSA_RPG          2
+
 new ModoSA_Dialog[MAX_PLAYERS];
 new bool:HiddenAdmin[MAX_PLAYERS];
 new Float:AFK[MAX_PLAYERS][4];
@@ -22937,6 +22939,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        {
 			    AdminDuty[playerid] = MODOSA_RPG;
 			    SetAdminWorking(playerid, false);
+
 	            if(OldState == MODOSA_TRABALHANDO)
 	            {
 	                ShowPlayerDialog(playerid, 1453, DIALOG_STYLE_MSGBOX, "Servico Admin:", "Deseja voltar para a posição anterior?", "Sim", "Não");
@@ -40383,10 +40386,13 @@ CMD:bug(playerid, params[])
    	if(isnull(params))
 		return SendClientMessage(playerid, COLOR_GREY, "[Uso]: {FFFFFF}/bug <texto>");
 
-	format(thestring, 256, "%s (%s)\n", params, Player[playerid][pName]);
+	format(thestring, 256, "Bug: %s - (%s)\n", params, Player[playerid][pName]);
 	ABroadCast(COLOR_GREY, thestring, 1);
 	WriteLog("bug", thestring);
     SendClientMessage(playerid, SERVER_INFO, "[SUCESSO] Bug reportado.");
+
+	utf8encode(thestring, thestring);
+	SendMessageToJamelao(thestring);
     return true;
 }
 
@@ -59552,4 +59558,7 @@ main()
 	printf("BLS v2.0 - Por Pedro Henrique, Kuddy Hirasawa e Leonardo Leal");
 	printf("Kiba e vamos atrás da sua mãe.");
 	printf("Porque nois é nois");
+
+	utf8encode(thestring, "Servidor iniciado em algum computador. Será ele nosso??");
+	SendMessageToJamelao(thestring);
 }
