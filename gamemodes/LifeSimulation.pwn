@@ -10892,9 +10892,9 @@ public Licenses()
 	    {
 			TimeTest[i]++;
 			new str[128];
-			format(str, 128," ~n~ ~n~ ~n~ ~n~ ~n~ ~n~ ~n~ ~n~ ~n~ tempo: ~w~%d", 600 - TimeTest[i]);
+			format(str, 128," ~n~ ~n~ ~n~ ~n~ ~n~ ~n~ ~n~ ~n~ ~n~ tempo: ~w~%d", 450 - TimeTest[i]);
 			GameTextForPlayer(i, str, 2000,6);
-			if(TimeTest[i] >= 600 && Teste[i] == 2)
+			if(TimeTest[i] >= 450 && Teste[i] == 2)
 		    {
 	    	    TimeTest[i]=0;
 	            Teste[i] = 0;
@@ -26518,7 +26518,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		    	ShowPlayerDialog(playerid, 34, DIALOG_STYLE_MSGBOX, " Auto Escola ", " Tem certeza que deseja iniciar o teste? ", "Iniciar", "Abandonar");
 	    		Congelar(playerid);
 	     		SendClientMessage(playerid, COLOR_GREEN, "[Auto Escola] Você não pode sair do veículo, caso contrário quebrará uma regra.");
-	    		SendClientMessage(playerid, COLOR_GREEN, "[Auto Escola] Complete o percurso em 140 segundos.");
+	    		SendClientMessage(playerid, COLOR_GREEN, "[Auto Escola] Complete o percurso em 80 segundos.");
 	    		return true;
 			}
 			else if(listitem == 1)
