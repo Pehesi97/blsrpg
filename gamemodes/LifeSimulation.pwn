@@ -10892,9 +10892,9 @@ public Licenses()
 	    {
 			TimeTest[i]++;
 			new str[128];
-			format(str, 128," ~n~ ~n~ ~n~ ~n~ ~n~ ~n~ ~n~ ~n~ ~n~ tempo: ~w~%d", TimeTest[i]);
+			format(str, 128," ~n~ ~n~ ~n~ ~n~ ~n~ ~n~ ~n~ ~n~ ~n~ tempo: ~w~%d", 600 - TimeTest[i]);
 			GameTextForPlayer(i, str, 2000,6);
-			if(TimeTest[i] >= 800 && Teste[i] == 2)
+			if(TimeTest[i] >= 600 && Teste[i] == 2)
 		    {
 	    	    TimeTest[i]=0;
 	            Teste[i] = 0;
