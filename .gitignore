@@ -1,1 +1,6 @@
 scriptfiles/
+server_log.txt
+*.exe
+samp-license.txt
+gamemodes/LifeSimulation.amx
+.vscode
