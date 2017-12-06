@@ -23,6 +23,7 @@
 |_________________________________________________|*/
 
 #include	<a_samp>
+#include	<a_sampdb>
 
 native IsValidVehicle(vehicleid);
 native SendMessageToJamelao(text[]);
@@ -2803,7 +2804,6 @@ forward Viajar(playerid, local);
 forward RemovePlayerWeapon(playerid, weaponid);
 forward SafeGivePlayerWeapon(plyid, weaponid, ammo);
 forward ClearChatbox(playerid, lines);
-forward IsAPizzabike(carid);
 forward SaveTrunk(idx);
 forward LoadTrunk();
 forward OnPlayerEnterFood(playerid, foodid);
@@ -2871,13 +2871,6 @@ forward SetPlayerUnjail();
 forward RingTonerRev();
 forward RingToner();
 forward Sms(string[]);
-forward IsATruck(carid);
-forward IsACopCar(carid);
-forward IsATaxi(carid);
-forward IsAAereo(carid);
-forward IsAPlane(carid);
-forward IsABike(carid);
-forward IsABoat(carid);
 forward IsACop(playerid);
 forward IsACrime(playerid);
 forward IsAGang(playerid);
@@ -5730,7 +5723,7 @@ forward Pedindo(playerid,jobid);
 public Pedindo(playerid,jobid)
 {
 	if(Solicitando[playerid][jobid] == true)
-	    return SendClientMessage(playerid,COLOR_RED, "[ERRO]:{FFFFFF} Você já solicitou este serviço. Aguarde.");
+	    return SendClientMessage(playerid, COLOR_RED, "[ERRO]:{FFFFFF} Você já solicitou este serviço. Aguarde.");
 
 	new string[128];
 	format(string, sizeof(string), "%s está solicitando os serviços de um %s.", ReturnPlayer(playerid),JobsNames[jobid]);
@@ -5738,12 +5731,6 @@ public Pedindo(playerid,jobid)
    	format(string, sizeof(string), "Você solicitou os serviços de um %s. Aguarde...", JobsNames[jobid]);
    	SendClientMessage(playerid, COLOR_LIGHTBLUE, string);
    	Solicitando[playerid][jobid] = true;
-   	return true;
-}
-
-forward PedindoEmergencia(playerid,emergencia);
-public PedindoEmergencia(playerid,emergencia)
-{
    	return true;
 }
 
@@ -6842,9 +6829,7 @@ new Text:TextDrawLogin13 = Text:INVALID_TEXT_DRAW;
 
 public OnGameModeInit()
 {
-	new bool:sistema = false;
-	if(DOF2_FileExists("/RPG/Sistema.ini"))
-	    sistema = DOF2_GetBool("/RPG/Sistema.ini", "Off");
+	#include "../gamemodes/db/onGameModeInit.pwn"
 
 	if(!DOF2_FileExists("/RPG/TopLevel.ini"))
 	{
@@ -6858,43 +6843,7 @@ public OnGameModeInit()
 		format(TopLevelName, 32, DOF2_GetString("/RPG/TopLevel.ini", "Top"));
 	}
 
-	if(sistema)
-	{
-		new file[64];
-		for(new i = 0; i < MAX_BOUGHT_VEHICLES; i++)
-		{
-		    format(file, 64, "%s%d.ini", PastaConce, i);
-			if(DOF2_FileExists(file))
-			{
-			    if(CarInfo[i][cID] != INVALID_VEHICLE_ID)
-			    {
-					CarInfo[i][cModel] = 0;
-					CarInfo[i][cX] = 0;
-					CarInfo[i][cY] = 0;
-					CarInfo[i][cZ] = 0;
-					CarInfo[i][cA] = 0;
-					CarInfo[i][cColor1] = -1;
-					CarInfo[i][cColor2] = -1;
-					CarInfo[i][cPaintjob] = 3;
-					format(CarInfo[i][cName], 32, "Nenhum");
-					format(CarInfo[i][cOwner], MAX_PLAYER_NAME, "Nenhum");
-					//CarInfo[i][cPRFLock] = 0;
-					CarInfo[i][cLock] = false;
-					VehicleInfo[CarInfo[i][cID]][vCustom] = false;
-					for(new m = 0; m < MAX_MODS; m++)
-						CarInfo[i][cMod][m] = 0;
-
-	                DestroyVehicle(CarInfo[i][cID]);
-	                CarInfo[i][cID] = INVALID_VEHICLE_ID;
-				    DOF2_RemoveFile(file);
-			    }
-			}
-	    }
-	}
-	DOF2_SetBool("/RPG/Sistema.ini", "Off", false);
-	DOF2_SaveFile();
-
-    Announce();
+	Announce();
 
     // Create the textdraws:
     FundoLogin = TextDrawCreate(1.000000, -1.000000, "fronten2:back5");
@@ -8816,6 +8765,7 @@ public OnGameModeExit()
 	//EleicoesFuncao(5);
 
 	DOF2_Exit();
+	#include "../gamemodes/db/onGameModeExit.pwn"
 	return true;
 }
 
@@ -13406,145 +13356,6 @@ stock IsAtMonitor(playerid)
     return false;
 }
 
-public IsABoat(carid)
-{
-	if(carid==430||carid==446||carid==452||carid==453||carid==454||carid==472||carid==473||carid==484||carid==493)
-	{
-		return true;
-	}
-	return 0;
-}
-
-public IsABike(carid)
-{
-	if(carid==522||carid==521||carid==468||carid==448||carid==581||carid==461||carid==463||carid==586||carid==523||carid==462||carid==510)
-	{
-		return true;
-	}
-	return 0;
-}
-
-stock IsAConceCar(carid)
-{
-	for(new i = 0; i < sizeof(ConceCars); i++)
-	{
-	    if(carid == ConceCars[i][vID])
-	    {
-	        return true;
-	    }
-	}
-	return false;
-}
-
-stock IsABicicle(carid)
-{
-	if(carid == 509 || carid == 510 || carid == 481) return true;
-	return false;
-}
-
-public IsATaxi(carid)
-{
-    for(new i = 0; i < sizeof(Taxi); i++)
-        if(carid == Taxi[i])
-            return true;
-
-	/*if(carid==420||carid==438||carid==586)
-	{
-		return true;
-	}*/
-	return false;
-}
-
-public IsAAereo(carid)
-{
-	if(carid==Aereo[0]||carid==Aereo[1])
-	{
-		return true;
-	}
-	return 0;
-}
-public IsAPlane(carid)
-{
-	if(carid==417||carid==425||carid==447||carid==460||carid==464||carid==465||carid==469||carid==476||carid==487||carid==488||carid==497||
-	carid==501||carid==511||carid==513||carid==512||carid==519||carid==520||carid==548||carid==553||carid==563||carid==477||carid==592||carid==593)
-	{
-		return true;
-	}
-	return 0;
-}
-public IsACopCar(carid)
-{
-	if(carid==426||carid==427||carid==461||carid==470||carid==490||carid==497||carid==521
-	||carid==523||carid==541||carid==528||carid==581||carid==596||carid==597||carid==598
-	||carid==599||carid==601||carid==602)
-	{
-		return true;
-	}
-	return 0;
-}
-forward IsACaminhao(carid);
-public IsACaminhao(carid)
-{
-	if(carid==403||carid==514||carid==515)
-	{
-		return true;
-	}
-	return 0;
-}
-
-forward IsAOnibus(carid);
-public IsAOnibus(carid)
-{
-	for(new i=0; i<11; i++)
-	    if(carid == Onibus[i])
-	        return true;
-	return false;
-}
-
-public IsAPizzabike(carid)
-{
-	if(carid==448)
-	{
-		return true;
-	}
-	return 0;
-}
-
-public IsATruck(carid)
-{
-	if(carid==456||carid==499)
-	{
-		return true;
-	}
-	return 0;
-}
-
-stock IsATruckEx(carid)
-{
-	if(carid == CaminhaoCarga[0] || carid == CaminhaoCarga[1] || carid == CaminhaoCarga[2] || carid == CaminhaoCarga[3] || carid == CaminhaoCarga[4] || carid == CaminhaoCarga[5] || carid == CaminhaoCarga[6] || carid == CaminhaoCarga[7]
-	|| carid == CaminhaoCarga[8] || carid == CaminhaoCarga[9] || carid == CaminhaoCarga[10] || carid == CaminhaoCarga[11] || carid == CaminhaoCarga[12] || carid == CaminhaoCarga[13] || carid == CaminhaoCarga[14])
-	return false;
-}
-
-stock IsAnTransportVehicle(carid)
-{
-	if(carid >= VeiculosMateriais[0] && carid <= VeiculosMateriais[sizeof(VeiculosMateriais) - 1]) return true;
-	return false;
-}
-
-stock TransportVehicle(carid)
-{
-/*	for(new v = 0; v < sizeof(VeiculosMateriais); v++)
-	{
-	    if(carid == VeiculosMateriais[v]) return v;
-	}*/
-	if(carid == VeiculosMateriais[0]) return 0;
-	else if(carid == VeiculosMateriais[1]) return 1;
-	else if(carid == VeiculosMateriais[2]) return 2;
-	else if(carid == VeiculosMateriais[3]) return 3;
-	return INVALID_VEHICLE_ID;
-}
-
 forward playerConnectLookAt(playerid);
 public playerConnectLookAt(playerid)
 {
@@ -13861,241 +13672,6 @@ public ClearGroceries(playerid)
 	    Groceries[playerid][pPizzas] = 0; Groceries[playerid][pPizza] = 0;
 	}
 	return true;
-}
-
-public OnPlayerDisconnect(playerid, reason)
-{
-	Player[playerid][pCDPlayer] = 20;
-	StopAudioStreamForPlayer(playerid);
-
-	PlayerTextDrawHide(playerid,vida[playerid]);
-	PlayerTextDrawHide(playerid,colete[playerid]);
-
-	new sstring[128];
-    format(sstring, sizeof(sstring), "-OperServ-: %s desconectou do servidor.", Player[playerid][pName]);
-    ABroadCast(COLOR_BARRAS, sstring, 6);
-	//Boombox
-	if(Player[playerid][pDynamicBB] != 0)
-	{
-	    DestroyDynamicObject(Player[playerid][pDynamicBB]);
-	    DestroyDynamic3DTextLabel(Player[playerid][pDynamicBBLabel]);
-	    if(IsValidDynamicArea(Player[playerid][pDynamicBBArea]))
-	    {
-	        new string[128];
-	        format(string, 128, "O dono da Boombox (%s) desconectou-se.", Player[playerid][pName]);
-	        foreach(Player, i)
-	        {
-	            if(IsPlayerInDynamicArea(i, Player[playerid][pDynamicBBArea]))
-	            {
-	                StopAudioStreamForPlayer(i);
-					SendClientMessage(i, COLOR_PURPLE, string);
-	            }
-	        }
-	    }
-	}
-
-    //Sistema de Tiro ao Alvo
-    if(InTAA[playerid])
-        EndTAA(playerid, false);
-
-    if(PlayerInRace[playerid])
-        EndRace(playerid, RACE_LOST_DISCONNECT);
-
-    //Sistema de Contrato
-    if (SendoProcurado[playerid])
-    {
-        foreach(new i: Player)
-        {
-            if (Vitima[i] == playerid)
-            {
-                Vitima[i] = 999;
-                SendoProcurado[playerid] = false;
-                Procurando[i] = false;
-                //Player[playerid][pHeadValue] = 0; //Tah Loco?
-                SendClientMessage(i, SERVER_INFO, "{FF0000}[Info]:{FFFFFF} O player que estava sob seu contrato deslogou.");
-                break;
-			}
-		}
-	}
-	if(gPlayerLogged[playerid])
-	{
-		if(Player[playerid][pIrcId] != -1) SetIrc(playerid, -1);
-  	}
-
-	new file[128];
-	format(file, sizeof(file), "/RPG/users/%s.ini", Player[playerid][pName]);
-  	DOF2_SetInt(file, "Online", 0);
-  	DOF2_SaveFile();
-  	SavePlayerToys(playerid);
-
-  	if(HireCar[playerid] != 299) UnLockCar(HireCar[playerid]);
-
-	GetPlayerPos(playerid,Player[playerid][pLocalX],Player[playerid][pLocalY],Player[playerid][pLocalZ]);
-	//TELEFONEMA
-	new caller = Mobile[playerid];
-	if(caller != 255)
-	{
-		if(caller < 255)
-		{
-            SetTimerEx("RemoverAttachTelefone", 1500, false, "d", caller);
-			SetPlayerSpecialAction(caller, SPECIAL_ACTION_STOPUSECELLPHONE);
-			SendClientMessage(caller,  COLOR_LIGHTBLUE, "** Desligaram");
-
-			CellTime[caller] = 0;
-			Mobile[caller] = 255;
-    	    KillTimer(LOL[caller]);
-		}
-		Mobile[playerid] = 255;
-		CellTime[playerid] = 0;
-		KillTimer(LOL[playerid]);
-	}
-	if(EmergencyCall[playerid])
-        EmergencyCall[playerid] = false;
-	//?
-    //Algo parecido com Foreach e não sei por quê não usar Foreach '-' (Já tava aqui) ~ Marcos
-	if(playerid == HighestID+1)
-	{
-	    new highID = 0;
-		foreach(new x: Player)
-	        if(x>highID)
-	            highID = x;
-
-		HighestID = highID;
-	}
-
-    new string[155];
-    switch(reason)
-    {
-        case 0: format(string, sizeof(string), "%s desconectou. (Caiu/Crashou)", ReturnPlayer(playerid));
-        case 2: format(string, sizeof(string), "%s desconectou. (Kickado/Banido)", ReturnPlayer(playerid));
-        default: format(string, sizeof(string), "%s desconectou. (Saiu)", ReturnPlayer(playerid));
-    }
-    ProxDetectorEx(75.0, playerid, string, COLOR_RED);
-
-    if(IsACop(playerid))
-		WantedPoints[playerid] = 0;
-
-	if(reason == 1 && PlayerTied[playerid] > 0)
-    {
-	    BanguBot(playerid,30,"Sair do servidor em Sequestro");
-    }
-
-	if(Incasa[playerid] != 0) {
-		format(file, sizeof(file), "/RPG/users/%s.ini", Player[playerid][pName]);
-		DOF2_SetInt(file, "sleep", gettime());
-	}
-
-    NoTaxi[playerid][0] = 0;
-	NoTaxi[playerid][1] = 0;
-	NoTaxi[playerid][2] = -1;
-    OnPlayerSave(playerid);
-
-    Conce[playerid] = 0;
-    CarColor[playerid][0] = 1;
-	CarColor[playerid][1] = 1;
-    /*VehicleInfo[vehicleid][vLock] = false;
-	VehicleInfo[vehicleid][vPRFLock] = 0;
-	if(CarShopping[playerid] == true)
-	{
-		CarShopping[playerid] = false;
-		DestroyVehicle(ShopCar[playerid]);
-	    carbrowse[playerid] = 0;
- 	}                            */
-
-	Player[playerid][pAdjustable] = 1;
-	Teste[playerid] = 0;
-    TakingLesson[playerid] = 0;
-    Acertos[playerid] = 0;
-    ClearCrime(playerid);
-    CPorder[playerid] = 0;
-
-    for(new z;z<MAX_JOBS;z++)
-        if(Solicitando[playerid][z] == true)
-		    Cancelando(playerid,z);
-
-	foreach(new x: Player)
- 		if(GetPlayerState(x) == PLAYER_STATE_SPECTATING && Player[x][gSpectateID] == playerid)
-   			AdvanceSpectate(x);
-
-	if(GettingCK[playerid] < 999)
-	{
-	    if(IsPlayerConnected(GettingCK[playerid]))
-	    {
-	        SendClientMessage(GettingCK[playerid], COLOR_YELLOW, "O personagem saiu do servidor, tente mais tarde.");
-	        OnCK[GettingCK[playerid]] = 999;
-	    }
-	}
-
-	if(PlayerPaintballing[playerid] != 0)
-	    PaintballPlayers --;
-
-	if(PlayerKarting[playerid] > 0 && PlayerInKart[playerid] > 0)
-	    KartingPlayers --;
-
-	if(PlayerBoxing[playerid] > 0)
-	{
-	    if(Boxer1 == playerid)
-	    {
-	        if(IsPlayerConnected(Boxer2))
-	        {
-	        	PlayerBoxing[Boxer2] = 0;
-	        	SafeSetPlayerPos(Boxer2, 765.8433,3.2924,1000.7186);
-	        	SetPlayerInterior(Boxer2, 5);
-	        	GameTextForPlayer(Boxer2, "~r~Partida interrompida", 5000, 1);
-			}
-	    }
-	    else if(Boxer2 == playerid)
-	    {
-	        if(IsPlayerConnected(Boxer1))
-	        {
-	        	PlayerBoxing[Boxer1] = 0;
-	        	SafeSetPlayerPos(Boxer1, 765.8433,3.2924,1000.7186);
-	        	SetPlayerInterior(Boxer1, 5);
-	        	GameTextForPlayer(Boxer1, "~r~partida interrompida", 5000, 1);
-			}
-	    }
-	    InRing = 0;
-     	RoundStarted = 0;
-		Boxer1 = 255;
-		Boxer2 = 255;
-		TBoxer = 255;
-	}
-    if(TaxistaIn[playerid] == true)
-		TaxistaNum -= 1;
-
-	if(Player[playerid][pJob] == MEDICO)
-	{
-		if(JobDuty[playerid] == 1)
-		{
-			Medics -= 1;
-		}
-	}
-	else if(Player[playerid][pJob] == MECANICO)
-	{
-		if(JobDuty[playerid] == 1)
-		{
-			Mechanics -= 1;
-		}
-	}
-	else if(Player[playerid][pJob] == EPIZZA)
-	{
-		if(JobDuty[playerid] == 1)
-		{
-			PizzaBoys -= 1;
-		}
-	}
-	if(Player[playerid][pCone] != 0)
-	{
-		Player[playerid][pCone] = 0;
-		RemoveCone(playerid);
-	}
-	if(Player[playerid][pCorrente] != 0)
-	{
-		DeleteClosestStrip();
- 		Player[playerid][pCorrente] = 0;
- 		RemoveCorrente(playerid);
-	}
-    return 1;
 }
 
 forward Reloguer(playerid);

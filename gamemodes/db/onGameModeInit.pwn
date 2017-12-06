@@ -1,0 +1,1 @@
+sqlite = db_open("blsrpg.sqlite");
