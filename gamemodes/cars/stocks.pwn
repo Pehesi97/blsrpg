@@ -1,5 +1,4 @@
-forward IsABoat(carid);
-public IsABoat(carid)
+stock IsABoat(carid)
 {
 	if(carid==430||carid==446||carid==452||carid==453||carid==454||carid==472||carid==473||carid==484||carid==493)
 	{
@@ -8,8 +7,7 @@ public IsABoat(carid)
 	return 0;
 }
 
-forward IsABike(carid);
-public IsABike(carid)
+stock IsABike(carid)
 {
 	if(carid==522||carid==521||carid==468||carid==448||carid==581||carid==461||carid==463||carid==586||carid==523||carid==462||carid==510)
 	{
@@ -21,7 +19,6 @@ public IsABike(carid)
 // Reescrever
 stock IsAConceCar(carid)
 {
-	
 	for(new i = 0; i < sizeof(ConceCars); i++)
 	{
 	    if(carid == ConceCars[i][vID])
@@ -38,8 +35,7 @@ stock IsABicicle(carid)
 	return false;
 }
 
-forward IsATaxi(carid);
-public IsATaxi(carid)
+stock IsATaxi(carid)
 {
     for(new i = 0; i < sizeof(Taxi); i++)
         if(carid == Taxi[i])
@@ -52,8 +48,7 @@ public IsATaxi(carid)
 	return false;
 }
 
-forward IsAAereo(carid);
-public IsAAereo(carid)
+stock IsAAereo(carid)
 {
 	if(carid==Aereo[0]||carid==Aereo[1])
 	{
@@ -62,8 +57,7 @@ public IsAAereo(carid)
 	return 0;
 }
 
-forward IsAPlane(carid);
-public IsAPlane(carid)
+stock IsAPlane(carid)
 {
 	if(carid==417||carid==425||carid==447||carid==460||carid==464||carid==465||carid==469||carid==476||carid==487||carid==488||carid==497||
 	carid==501||carid==511||carid==513||carid==512||carid==519||carid==520||carid==548||carid==553||carid==563||carid==477||carid==592||carid==593)
@@ -73,8 +67,7 @@ public IsAPlane(carid)
 	return 0;
 }
 
-forward IsACopCar(carid);
-public IsACopCar(carid)
+stock IsACopCar(carid)
 {
 	if(carid==426||carid==427||carid==461||carid==470||carid==490||carid==497||carid==521
 	||carid==523||carid==541||carid==528||carid==581||carid==596||carid==597||carid==598
@@ -85,8 +78,7 @@ public IsACopCar(carid)
 	return 0;
 }
 
-forward IsACaminhao(carid);
-public IsACaminhao(carid)
+stock IsACaminhao(carid)
 {
 	if(carid==403||carid==514||carid==515)
 	{
@@ -95,8 +87,7 @@ public IsACaminhao(carid)
 	return 0;
 }
 
-forward IsAOnibus(carid);
-public IsAOnibus(carid)
+stock IsAOnibus(carid)
 {
 	for(new i=0; i<11; i++)
 	    if(carid == Onibus[i])
@@ -104,8 +95,7 @@ public IsAOnibus(carid)
 	return false;
 }
 
-forward IsAPizzabike(carid);
-public IsAPizzabike(carid)
+stock IsAPizzabike(carid)
 {
 	if(carid==448)
 	{
@@ -114,8 +104,7 @@ public IsAPizzabike(carid)
 	return 0;
 }
 
-forward IsATruck(carid);
-public IsATruck(carid)
+stock IsATruck(carid)
 {
 	if(carid==456||carid==499)
 	{

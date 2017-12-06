@@ -699,3 +699,107 @@ public OnPlayerDisconnect(playerid, reason)
 	}
     return 1;
 }
+
+public OnPlayerExitVehicle(playerid, vehicleid)
+{
+    //Marchas[playerid][0] = 0;
+
+    if(IsATaxi(vehicleid) || IsAAereo(vehicleid))
+    {
+        new bool:Found;
+        for(new i = 0; i < sizeof(Taxi); i++)
+            if(vehicleid == Taxi[i])
+                Found = true;
+        if(NoTaxi[playerid][2] == -1 || !Found) goto Pular;
+        new string[32];
+		format(string, sizeof(string), "Você pagou R$ %d pela corrida.",NoTaxi[playerid][1]);
+	    SendClientMessage(playerid, COLOR_YELLOW, string);
+	    format(string, sizeof(string), "Você ganhou R$ %d pela corrida.",NoTaxi[playerid][1]);
+	    SendClientMessage(NoTaxi[playerid][2], COLOR_YELLOW, string);
+	    GivePlayerGP(playerid,-NoTaxi[playerid][1]);
+	    GivePlayerGP(NoTaxi[playerid][2],NoTaxi[playerid][1]);
+	    NoTaxi[playerid][0] = 0;
+		NoTaxi[playerid][1] = 0;
+		NoTaxi[playerid][2] = -1;
+	}
+
+	Pular:
+
+    if(Sequestrador[playerid] == 1)
+    {
+        new carro = GetPlayerVehicleID(playerid);
+        foreach(new i: Player)
+		{
+		    if(GetPlayerVehicleID(i) == carro && playerid != i)
+		    {
+		        SendClientMessage(i, COLOR_ORANGE,"O sequestrador se distraiu, essa é sua chance de fugir!");
+		        SetCameraBehindPlayer(i);
+				PlayerTied[i] = 0;
+				Sequestrador[playerid] = 0;
+				BlindFold[i] = 0;
+				SetPlayerDrunkLevel(i, 0);
+				TogglePlayerControllable(i, 1);
+				return true;
+		    }
+		}
+    }
+
+	if(vehicleid == AutoEscolaCars[3] && Teste[playerid] == 1)
+	{
+        SendClientMessage(playerid, COLOR_RED, "Você violou as regras do teste, punicão: fim de teste.");
+		SetVehicleToRespawn(GetPlayerVehicleID(playerid));
+		Teste[playerid] = 0;
+		TimeTest[playerid] = 0;
+		DisablePlayerRaceCheckpoint(playerid);
+		TakingLesson[playerid] = 0;
+		return true;
+	}
+	if(vehicleid == AutoEscolaCars[2] && Teste[playerid] == 3)
+	{
+        SendClientMessage(playerid, COLOR_RED, "Você violou as regras do teste, punicão: fim de teste.");
+		SetVehicleToRespawn(GetPlayerVehicleID(playerid));
+		Teste[playerid] = 0;
+		TimeTest[playerid] = 0;
+		DisablePlayerRaceCheckpoint(playerid);
+		TakingLesson[playerid] = 0;
+		return true;
+	}
+	if((vehicleid == AutoEscolaCars[0] || vehicleid == AutoEscolaCars[1]) && Teste[playerid] == 2)
+	{
+        SendClientMessage(playerid, COLOR_RED, "Você violou as regras do teste, punicão: fim de teste.");
+		SetVehicleToRespawn(GetPlayerVehicleID(playerid));
+		Teste[playerid]=0;
+		TimeTest[playerid]=0;
+		DisablePlayerRaceCheckpoint(playerid);
+		TakingLesson[playerid] = 0;
+
+    	SafeSetPlayerPos(playerid, 1491.0194, 1305.7502, 1093.2963);
+
+    	SetPlayerInterior(playerid, 3);
+    	Player[playerid][pInt] = 3;
+
+    	Player[playerid][pLocal] = 9999;
+		return true;
+	}
+	if(CarShopping[playerid] == true)
+	{
+	    new sendername[MAX_PLAYER_NAME];
+        GetPlayerName(playerid, sendername, sizeof(sendername));
+		CarShopping[playerid] = false;
+		DestroyVehicle(ShopCar[playerid]);
+	    carbrowse[playerid] = 0;
+	    Kick(playerid);
+ 	}
+
+	if(GetPlayerState(playerid) == 1)
+		return true;
+
+	new vid = GetPlayerVehicleID(playerid);
+	new tmpcar = GetVehicleModel(GetPlayerVehicleID(playerid));
+	if(TruckMission[playerid] == 1 && (IsACaminhao(tmpcar) || vid >= Caminhao[0] && vid <= Caminhao[14]))
+	{
+	    SendClientMessage(playerid, COLOR_RED, "Você saiu do caminhão e a entrega foi cancelada.");
+	    PlayerOnMission[playerid] = 0;
+	}
+    return true;
+}

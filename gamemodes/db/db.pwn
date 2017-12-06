@@ -1,1 +1,1 @@
-new DB: sqlite;
+new DB:sqlite;

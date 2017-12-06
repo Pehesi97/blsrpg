@@ -24,10 +24,6 @@
 
 #include	<a_samp>
 #include	<a_sampdb>
-
-native IsValidVehicle(vehicleid);
-native SendMessageToJamelao(text[]);
-
 #include    <sscanf2>
 #include    <izcmd>
 #include    <dof2>
@@ -43,6 +39,11 @@ native SendMessageToJamelao(text[]);
 #include    <skinchanging>
 #include    <crashdetect>
 #include	<strlib>
+
+#include	"gamemodes/db/db.pwn"
+
+native IsValidVehicle(vehicleid);
+native SendMessageToJamelao(text[]);
 
 //----------------------------------------------------------------//
 //*************************** Defines ****************************//
@@ -121,54 +122,8 @@ new ElevadoresNeon[4];
 #define GetVehicleParams(%0) \
         GetVehicleParamsEx(%0, engine, lights, alarm, doors, bonnet, boot, objective)
 
-// Neon
-#define DIALOG_NEON        963
-
-forward DescerNeon(playerid);
-public DescerNeon(playerid)
-{
-	new elev = IsAtNeonShop(playerid);
-	switch (elev)
-	{
-	    case 0: { MoveDynamicObject(ElevadoresNeon[0], 1554.40234, -2166.41821, 10.75980, 0.2); }
-	    case 1: { MoveDynamicObject(ElevadoresNeon[1], 1563.39392, -2166.41821, 10.75980, 0.2); }
-	    case 2: { MoveDynamicObject(ElevadoresNeon[2], 1572.88684, -2166.41821, 10.75980, 0.2); }
-	    case 3: { MoveDynamicObject(ElevadoresNeon[3], 1581.84766, -2166.41821, 10.75980, 0.2); }
-	}
-}
-
-forward SubirNeon(playerid);
-public SubirNeon(playerid)
-{
-	new elev = IsAtNeonShop(playerid);
-	switch (elev)
-	{
-	    case 0: { MoveDynamicObject(ElevadoresNeon[0], 1554.40234, -2166.41821, 11.65980, 0.2); }
-	    case 1: { MoveDynamicObject(ElevadoresNeon[1], 1563.39392, -2166.41821, 11.65980, 0.2); }
-	    case 2: { MoveDynamicObject(ElevadoresNeon[2], 1572.88684, -2166.41821, 11.65980, 0.2); }
-	    case 3: { MoveDynamicObject(ElevadoresNeon[3], 1581.84766, -2166.41821, 11.65980, 0.2); }
-	}
-}
-
-forward NeonAdded(veh, playerid);
-public NeonAdded(veh, playerid)
-{
-   	PlayerPlaySound(playerid, 1133, 0.0, 0.0, 0.0);
-	SetEngine(veh, true);
-	SendClientMessage(playerid, 0x1E90FFFF, "[Neon Shop]: {FFFFFF}O neon foi adicionado com sucesso!");
-	DescerNeon(playerid);
-	return true;
-}
-
-forward NeonRemoved(veh, playerid);
-public NeonRemoved(veh, playerid)
-{
-   	PlayerPlaySound(playerid, 1133, 0.0, 0.0, 0.0);
-	SetEngine(veh, true);
-	SendClientMessage(playerid, 0x1E90FFFF, "[Neon Shop]: {FFFFFF}O neon foi removido com sucesso!");
-	DescerNeon(playerid);
-	return true;
-}
+#include "gamemodes/neon/declares.pwn"
+#include "gamemodes/neon/publics.pwn"
 
 //Imagem fundo
 new Text:FundoLogin;
@@ -6829,7 +6784,7 @@ new Text:TextDrawLogin13 = Text:INVALID_TEXT_DRAW;
 
 public OnGameModeInit()
 {
-	#include "../gamemodes/db/onGameModeInit.pwn"
+	#include "gamemodes/db/onGameModeInit.pwn"
 
 	if(!DOF2_FileExists("/RPG/TopLevel.ini"))
 	{
@@ -8655,11 +8610,8 @@ public OnGameModeInit()
 /*    for(new b = 0; b < MAX_AREASAZUIS; b++)
         AreasAzuis[b][azGangZoneID] = GangZoneCreate(AreasAzuis[b][azMinPosX], AreasAzuis[b][azMinPosY], AreasAzuis[b][azMaxPosX], AreasAzuis[b][azMaxPosY]);  */
 
-	Create3DTextLabel("Neon Shop\n{FFFFFF}Brasil {FF0000}Life {FFFFFF}Simulation\n{00FFFF}/neon", 0x1E90FFFF, 696.0831, -1185.4281, 15.6033, 30.0, 0, true);
-	Create3DTextLabel("Neon Shop\n{FFFFFF}Suba na plataforma e digite\n{00FFFF}/neon", 0x1E90FFFF, 1554.4722, -2167.9980, 13.7061, 30.0, 0, true);
-	Create3DTextLabel("Neon Shop\n{FFFFFF}Suba na plataforma e digite\n{00FFFF}/neon", 0x1E90FFFF, 1563.4127, -2167.9980, 13.7061, 30.0, 0, true);
-	Create3DTextLabel("Neon Shop\n{FFFFFF}Suba na plataforma e digite\n{00FFFF}/neon", 0x1E90FFFF, 1572.9111, -2167.9980, 13.7061, 30.0, 0, true);
-	Create3DTextLabel("Neon Shop\n{FFFFFF}Suba na plataforma e digite\n{00FFFF}/neon", 0x1E90FFFF, 1581.8969, -2167.9980, 13.7061, 30.0, 0, true);
+	#include "gamemodes/neon/onGameModeInit.pwn"
+
 	Create3DTextLabel("Armazem de Drogas Pessoal\n\n{FF0000}/PegarDrogas\n{FF0000}/GuardarDrogas", 0xFFFFFFFF, 1857.2000, -1870.5500, 14.0000, 30.0, 0, true); //Armazem de Drogas Pessoal
 //	Create3DTextLabel("Armazem de Drogas da Gang\n\n{FF0000}/PegarDrogas\n{FF0000}/GuardarDrogas", 0xFFFFFFFF, 1941.0000, -1984.5000, 13.5500, 30.0, 0, true); //Armazem de Drogas da Gang
 	//Create3DTextLabel("Mini-Pizzaria da Praça\n\n{FF0000}/Pizzaria", 0xFFFFFFFF, 1477.2084,-1605.0364,13.7969, 30.0, 0, true); //Mini-Pizzaria da Praça
@@ -8765,7 +8717,7 @@ public OnGameModeExit()
 	//EleicoesFuncao(5);
 
 	DOF2_Exit();
-	#include "../gamemodes/db/onGameModeExit.pwn"
+	#include "gamemodes/db/onGameModeExit.pwn"
 	return true;
 }
 
@@ -12934,113 +12886,6 @@ stock right(source[], len)
 
 
 //------------------------------------------------------------------------------------------------------
-
-
-public OnPlayerExitVehicle(playerid, vehicleid)
-{
-    //Marchas[playerid][0] = 0;
-
-    if(IsATaxi(vehicleid) || IsAAereo(vehicleid))
-    {
-        new bool:Found;
-        for(new i = 0; i < sizeof(Taxi); i++)
-            if(vehicleid == Taxi[i])
-                Found = true;
-        if(NoTaxi[playerid][2] == -1 || !Found) goto Pular;
-        new string[32];
-		format(string, sizeof(string), "Você pagou R$ %d pela corrida.",NoTaxi[playerid][1]);
-	    SendClientMessage(playerid, COLOR_YELLOW, string);
-	    format(string, sizeof(string), "Você ganhou R$ %d pela corrida.",NoTaxi[playerid][1]);
-	    SendClientMessage(NoTaxi[playerid][2], COLOR_YELLOW, string);
-	    GivePlayerGP(playerid,-NoTaxi[playerid][1]);
-	    GivePlayerGP(NoTaxi[playerid][2],NoTaxi[playerid][1]);
-	    NoTaxi[playerid][0] = 0;
-		NoTaxi[playerid][1] = 0;
-		NoTaxi[playerid][2] = -1;
-	}
-
-	Pular:
-
-    if(Sequestrador[playerid] == 1)
-    {
-        new carro = GetPlayerVehicleID(playerid);
-        foreach(new i: Player)
-		{
-		    if(GetPlayerVehicleID(i) == carro && playerid != i)
-		    {
-		        SendClientMessage(i, COLOR_ORANGE,"O sequestrador se distraiu, essa é sua chance de fugir!");
-		        SetCameraBehindPlayer(i);
-				PlayerTied[i] = 0;
-				Sequestrador[playerid] = 0;
-				BlindFold[i] = 0;
-				SetPlayerDrunkLevel(i, 0);
-				TogglePlayerControllable(i, 1);
-				return true;
-		    }
-		}
-    }
-
-	if(vehicleid == AutoEscolaCars[3] && Teste[playerid] == 1)
-	{
-        SendClientMessage(playerid, COLOR_RED, "Você violou as regras do teste, punicão: fim de teste.");
-		SetVehicleToRespawn(GetPlayerVehicleID(playerid));
-		Teste[playerid] = 0;
-		TimeTest[playerid] = 0;
-		DisablePlayerRaceCheckpoint(playerid);
-		TakingLesson[playerid] = 0;
-		return true;
-	}
-	if(vehicleid == AutoEscolaCars[2] && Teste[playerid] == 3)
-	{
-        SendClientMessage(playerid, COLOR_RED, "Você violou as regras do teste, punicão: fim de teste.");
-		SetVehicleToRespawn(GetPlayerVehicleID(playerid));
-		Teste[playerid] = 0;
-		TimeTest[playerid] = 0;
-		DisablePlayerRaceCheckpoint(playerid);
-		TakingLesson[playerid] = 0;
-		return true;
-	}
-	if((vehicleid == AutoEscolaCars[0] || vehicleid == AutoEscolaCars[1]) && Teste[playerid] == 2)
-	{
-        SendClientMessage(playerid, COLOR_RED, "Você violou as regras do teste, punicão: fim de teste.");
-		SetVehicleToRespawn(GetPlayerVehicleID(playerid));
-		Teste[playerid]=0;
-		TimeTest[playerid]=0;
-		DisablePlayerRaceCheckpoint(playerid);
-		TakingLesson[playerid] = 0;
-
-    	SafeSetPlayerPos(playerid, 1491.0194, 1305.7502, 1093.2963);
-
-    	SetPlayerInterior(playerid, 3);
-    	Player[playerid][pInt] = 3;
-
-    	Player[playerid][pLocal] = 9999;
-		return true;
-	}
-	if(CarShopping[playerid] == true)
-	{
-	    new sendername[MAX_PLAYER_NAME];
-        GetPlayerName(playerid, sendername, sizeof(sendername));
-		CarShopping[playerid] = false;
-		DestroyVehicle(ShopCar[playerid]);
-	    carbrowse[playerid] = 0;
-	    Kick(playerid);
- 	}
-
-	if(GetPlayerState(playerid) == 1)
-		return true;
-
-	new vid = GetPlayerVehicleID(playerid);
-	new tmpcar = GetVehicleModel(GetPlayerVehicleID(playerid));
-	if(TruckMission[playerid] == 1 && (IsACaminhao(tmpcar) || vid >= Caminhao[0] && vid <= Caminhao[14]))
-	{
-	    SendClientMessage(playerid, COLOR_RED, "Você saiu do caminhão e a entrega foi cancelada.");
-	    PlayerOnMission[playerid] = 0;
-	}
-    return true;
-}
-
-
 public IsAMember(playerid)
 {
 	if(IsPlayerConnected(playerid))
@@ -13367,7 +13212,7 @@ public playerConnectLookAt(playerid)
 }
 
 //------------------------------------------------------------------------------------------------------
-#include "gamemodes/common/base.pwn"
+#include "gamemodes/users/base.pwn"
 
 forward UpdateServer();
 public UpdateServer()
@@ -58677,3 +58522,5 @@ main()
 	utf8encode(thestring, "Servidor iniciado em algum computador. Será ele nosso??");
 	SendMessageToJamelao(thestring);
 }
+
+#include "gamemodes/cars/stocks.pwn"

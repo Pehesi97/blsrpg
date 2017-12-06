@@ -1,1 +1,1 @@
-sqlite = db_open("blsrpg.sqlite");
+    sqlite = db_open("blsrpg.sqlite");

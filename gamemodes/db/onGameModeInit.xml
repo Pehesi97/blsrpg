@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet href="file:///c|/Users/pedro/Desktop/blsrpg/pawno/xml/pawndoc.xsl" type="text/xsl"?>
+<doc source="gamemodes/db/onGameModeInit.pwn">
+	<assembly>
+		<name>gamemodes/db/onGameModeInit.pwn</name>
+	</assembly>
+	<members>
+
+		<!-- enumerations -->
+
+		<!-- constants -->
+
+		<!-- variables -->
+
+		<!-- functions -->
+
+	</members>
+</doc>

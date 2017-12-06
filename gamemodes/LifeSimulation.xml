@@ -1448,7 +1448,6 @@
 			<referrer name="IsPlayerInMoto"/>
 			<referrer name="IsPlayerInBike"/>
 			<referrer name="OnPlayerKeyStateChange"/>
-			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="IsATerror"/>
 			<referrer name="IsAMafia"/>
 			<referrer name="IsACrimeOrg"/>
@@ -1459,16 +1458,11 @@
 			<referrer name="IsACopEx"/>
 			<referrer name="IsAtBar"/>
 			<referrer name="IsAtMonitor"/>
-			<referrer name="IsAConceCar"/>
-			<referrer name="IsABicicle"/>
-			<referrer name="IsATaxi"/>
-			<referrer name="IsAOnibus"/>
-			<referrer name="IsATruckEx"/>
-			<referrer name="IsAnTransportVehicle"/>
 			<referrer name="REMOBJ_OnPlayerConnect"/>
+			<referrer name="Streamer_OnPlayerDisconnect"/>
+			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="UpdateServer"/>
 			<referrer name="OnReset"/>
-			<referrer name="Streamer_OnPlayerDisconnect"/>
 			<referrer name="SetPlayerSpawn"/>
 			<referrer name="SpawnNecessario"/>
 			<referrer name="Streamer_OnPlayerPickUpPickup"/>
@@ -1646,6 +1640,12 @@
 			<referrer name="IsPlayerInRangeOfBiz"/>
 			<referrer name="IsBizLocked"/>
 			<referrer name="IsLockableBiz"/>
+			<referrer name="IsAConceCar"/>
+			<referrer name="IsABicicle"/>
+			<referrer name="IsATaxi"/>
+			<referrer name="IsAOnibus"/>
+			<referrer name="IsATruckEx"/>
+			<referrer name="IsAnTransportVehicle"/>
 		</member>
 		<member name="C:true" value="1">
 			<tagname value="bool"/>
@@ -1684,7 +1684,6 @@
 			<referrer name="AddApreendido"/>
 			<referrer name="CompletarNonRepMilestone"/>
 			<referrer name="Pedindo"/>
-			<referrer name="PedindoEmergencia"/>
 			<referrer name="Aceitando"/>
 			<referrer name="RemoverMarker"/>
 			<referrer name="Cancelando"/>
@@ -1751,7 +1750,6 @@
 			<referrer name="KartingEnded"/>
 			<referrer name="ScoreUpdate"/>
 			<referrer name="Encrypt"/>
-			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="IsAMember"/>
 			<referrer name="IsATerror"/>
 			<referrer name="IsAMafia"/>
@@ -1771,21 +1769,10 @@
 			<referrer name="IsAtLoja"/>
 			<referrer name="IsAtBar"/>
 			<referrer name="IsAtMonitor"/>
-			<referrer name="IsABoat"/>
-			<referrer name="IsABike"/>
-			<referrer name="IsAConceCar"/>
-			<referrer name="IsABicicle"/>
-			<referrer name="IsATaxi"/>
-			<referrer name="IsAAereo"/>
-			<referrer name="IsAPlane"/>
-			<referrer name="IsACopCar"/>
-			<referrer name="IsACaminhao"/>
-			<referrer name="IsAOnibus"/>
-			<referrer name="IsAPizzabike"/>
-			<referrer name="IsATruck"/>
-			<referrer name="IsAnTransportVehicle"/>
 			<referrer name="playerConnectLookAt"/>
 			<referrer name="REMOBJ_OnPlayerConnect"/>
+			<referrer name="Streamer_OnPlayerDisconnect"/>
+			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="UpdateServer"/>
 			<referrer name="OnReset"/>
 			<referrer name="OnKick"/>
@@ -1797,7 +1784,6 @@
 			<referrer name="ClearCooking"/>
 			<referrer name="ClearCookingID"/>
 			<referrer name="ClearGroceries"/>
-			<referrer name="Streamer_OnPlayerDisconnect"/>
 			<referrer name="Reloguer"/>
 			<referrer name="SetPlayerSpawn"/>
 			<referrer name="SpawnNecessario"/>
@@ -2439,6 +2425,19 @@
 			<referrer name="SendFakeKillMessage"/>
 			<referrer name="LoadAdminTimes"/>
 			<referrer name="SaveAdminTimes"/>
+			<referrer name="IsABoat"/>
+			<referrer name="IsABike"/>
+			<referrer name="IsAConceCar"/>
+			<referrer name="IsABicicle"/>
+			<referrer name="IsATaxi"/>
+			<referrer name="IsAAereo"/>
+			<referrer name="IsAPlane"/>
+			<referrer name="IsACopCar"/>
+			<referrer name="IsACaminhao"/>
+			<referrer name="IsAOnibus"/>
+			<referrer name="IsAPizzabike"/>
+			<referrer name="IsATruck"/>
+			<referrer name="IsAnTransportVehicle"/>
 		</member>
 
 		<!-- variables -->
@@ -2534,8 +2533,8 @@
 		</member>
 		<member name="F:Aereo">
 			<referrer name="Itter_OnGameModeInit"/>
-			<referrer name="IsAAereo"/>
 			<referrer name="OnPlayerStateChange"/>
+			<referrer name="IsAAereo"/>
 		</member>
 		<member name="F:AlarmeInfo">
 			<referrer name="CheckAlarmArea"/>
@@ -2922,8 +2921,8 @@
 			<referrer name="CheckBizEntranceExit"/>
 		</member>
 		<member name="F:BlindFold">
-			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="REMOBJ_OnPlayerConnect"/>
+			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="cmd_vendar"/>
 		</member>
 		<member name="F:BoatTestCP">
@@ -3073,8 +3072,8 @@
 		</member>
 		<member name="F:CaminhaoCarga">
 			<referrer name="Itter_OnGameModeInit"/>
-			<referrer name="IsATruckEx"/>
 			<referrer name="cmd_remp"/>
+			<referrer name="IsATruckEx"/>
 		</member>
 		<member name="F:CandidatoInfo">
 			<referrer name="cmd_votar"/>
@@ -3265,12 +3264,12 @@
 		<member name="F:ConceCars">
 			<referrer name="LoadConceCars"/>
 			<referrer name="ResetPlayerCars"/>
-			<referrer name="IsAConceCar"/>
 			<referrer name="OnDialogResponse"/>
 			<referrer name="cmd_testarcor"/>
 			<referrer name="cmd_comprarveiculo"/>
 			<referrer name="cmd_motor"/>
 			<referrer name="FindCarModelPrice"/>
+			<referrer name="IsAConceCar"/>
 		</member>
 		<member name="F:Condom">
 			<referrer name="REMOBJ_OnPlayerConnect"/>
@@ -3493,8 +3492,8 @@
 			<referrer name="cmd_fixcam"/>
 		</member>
 		<member name="F:ElevadoresNeon">
-			<referrer name="DescerNeon"/>
 			<referrer name="SubirNeon"/>
+			<referrer name="DescerNeon"/>
 			<referrer name="Itter_OnGameModeInit"/>
 		</member>
 		<member name="F:ElevatorBoostTimer">
@@ -4453,8 +4452,8 @@
 			<referrer name="OnPlayerText"/>
 		</member>
 		<member name="F:NoTaxi">
-			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="Streamer_OnPlayerDisconnect"/>
+			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="SetPlayerUnjail"/>
 			<referrer name="OnPlayerEnterVehicle"/>
 		</member>
@@ -4519,8 +4518,8 @@
 		</member>
 		<member name="F:Onibus">
 			<referrer name="Itter_OnGameModeInit"/>
-			<referrer name="IsAOnibus"/>
 			<referrer name="cmd_remp"/>
+			<referrer name="IsAOnibus"/>
 		</member>
 		<member name="F:Online">
 			<referrer name="Itter_OnGameModeInit"/>
@@ -4855,13 +4854,13 @@
 			<referrer name="Licenses"/>
 			<referrer name="OnPlayerKeyStateChange"/>
 			<referrer name="ScoreUpdate"/>
-			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="IsAMember"/>
 			<referrer name="IsAGang"/>
 			<referrer name="IsACivil"/>
 			<referrer name="REMOBJ_OnPlayerConnect"/>
-			<referrer name="ClearMarriage"/>
 			<referrer name="Streamer_OnPlayerDisconnect"/>
+			<referrer name="OnPlayerExitVehicle"/>
+			<referrer name="ClearMarriage"/>
 			<referrer name="Reloguer"/>
 			<referrer name="SetPlayerSpawn"/>
 			<referrer name="SpawnNecessario"/>
@@ -5295,10 +5294,10 @@
 			<referrer name="StartKarting"/>
 			<referrer name="KartingEnded"/>
 			<referrer name="ScoreUpdate"/>
-			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="REMOBJ_OnPlayerConnect"/>
-			<referrer name="UpdateServer"/>
 			<referrer name="Streamer_OnPlayerDisconnect"/>
+			<referrer name="OnPlayerExitVehicle"/>
+			<referrer name="UpdateServer"/>
 			<referrer name="Reloguer"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="Streamer_OnPlayerEnterCP"/>
@@ -5526,8 +5525,8 @@
 			<referrer name="SetPlayerUnjail"/>
 		</member>
 		<member name="F:PlayerOnMission">
-			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="REMOBJ_OnPlayerConnect"/>
+			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="Streamer_OnPlayerEnterCP"/>
 			<referrer name="OnPlayerStateChange"/>
 			<referrer name="cmd_gps"/>
@@ -5566,9 +5565,9 @@
 			<referrer name="SetPlayerUnjail"/>
 		</member>
 		<member name="F:PlayerTied">
-			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="REMOBJ_OnPlayerConnect"/>
 			<referrer name="Streamer_OnPlayerDisconnect"/>
+			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="cmd_gmr"/>
 			<referrer name="cmd_vendar"/>
@@ -6307,9 +6306,9 @@
 		</member>
 		<member name="F:TakingLesson">
 			<referrer name="Licenses"/>
-			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="REMOBJ_OnPlayerConnect"/>
 			<referrer name="Streamer_OnPlayerDisconnect"/>
+			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="Streamer_OnPlayerEnterRaceCP"/>
 			<referrer name="OnPlayerStateChange"/>
 			<referrer name="OnDialogResponse"/>
@@ -6331,9 +6330,9 @@
 		<member name="F:Taxi">
 			<referrer name="Itter_OnGameModeInit"/>
 			<referrer name="OnPlayerExitVehicle"/>
-			<referrer name="IsATaxi"/>
 			<referrer name="OnPlayerStateChange"/>
 			<referrer name="cmd_remp"/>
+			<referrer name="IsATaxi"/>
 		</member>
 		<member name="F:TaxistaIn">
 			<tagname value="bool"/>
@@ -6385,8 +6384,8 @@
 		</member>
 		<member name="F:Teste">
 			<referrer name="Licenses"/>
-			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="Streamer_OnPlayerDisconnect"/>
+			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="Streamer_OnPlayerEnterRaceCP"/>
 			<referrer name="OnPlayerExitedMenu"/>
 			<referrer name="OnPlayerStateChange"/>
@@ -6583,8 +6582,8 @@
 			<referrer name="OnDialogResponse"/>
 		</member>
 		<member name="F:TruckMission">
-			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="REMOBJ_OnPlayerConnect"/>
+			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="Streamer_OnPlayerEnterCP"/>
 			<referrer name="OnPlayerStateChange"/>
 		</member>
@@ -6773,8 +6772,6 @@
 		<member name="F:VeiculosMateriais">
 			<referrer name="Itter_OnGameModeInit"/>
 			<referrer name="Licenses"/>
-			<referrer name="IsAnTransportVehicle"/>
-			<referrer name="TransportVehicle"/>
 			<referrer name="OnPlayerStateChange"/>
 			<referrer name="RespawnBot"/>
 			<referrer name="OnDialogResponse"/>
@@ -6783,6 +6780,8 @@
 			<referrer name="GetMaxVehMaterial"/>
 			<referrer name="PossivelVeiculoDeTransporte"/>
 			<referrer name="RemoveVehicleMaterial"/>
+			<referrer name="IsAnTransportVehicle"/>
+			<referrer name="TransportVehicle"/>
 		</member>
 		<member name="F:VipCar">
 			<referrer name="OnDialogResponse"/>
@@ -6833,8 +6832,8 @@
 			<referrer name="BanguBot"/>
 			<referrer name="CheckWeaponHack"/>
 			<referrer name="REMOBJ_OnPlayerConnect"/>
-			<referrer name="ClearCrimeTempo"/>
 			<referrer name="Streamer_OnPlayerDisconnect"/>
+			<referrer name="ClearCrimeTempo"/>
 			<referrer name="Reloguer"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="OnPlayerStateChange"/>
@@ -7744,6 +7743,11 @@
 		<member name="F:senha">
 			<referrer name="cmd_senha"/>
 			<referrer name="cmd_fila"/>
+		</member>
+		<member name="F:sqlite">
+			<tagname value="DB"/>
+			<referrer name="Itter_OnGameModeInit"/>
+			<referrer name="ScriptInit_OnGameModeExit"/>
 		</member>
 		<member name="F:testeint">
 			<referrer name="cmd_abrirteste"/>
@@ -10952,8 +10956,8 @@
 			<attribute name="public"/>
 			<stacksize value="31"/>
 			<referrer name="REMOBJ_OnPlayerConnect"/>
-			<referrer name="ClearCrimeTempo"/>
 			<referrer name="Streamer_OnPlayerDisconnect"/>
+			<referrer name="ClearCrimeTempo"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="SetPlayerFree"/>
 			<referrer name="SetPlayerUnjail"/>
@@ -12371,7 +12375,6 @@
 			<tagname value="bool"/>
 			<stacksize value="24"/>
 			<referrer name="LoadPlayerCars"/>
-			<referrer name="Itter_OnGameModeInit"/>
 			<referrer name="LoadGuerra"/>
 			<referrer name="LoadBizz"/>
 			<referrer name="LoadBizzSettings"/>
@@ -12712,7 +12715,6 @@
 			<referrer name="ResetPlayerCars"/>
 			<referrer name="LoadPlayerCars"/>
 			<referrer name="SavePlayerCars"/>
-			<referrer name="Itter_OnGameModeInit"/>
 			<referrer name="REMOBJ_OnPlayerConnect"/>
 			<referrer name="OnReset"/>
 			<referrer name="OnPlayerSpawn"/>
@@ -12889,7 +12891,6 @@
 		<member name="M:DOF2_SetBool" syntax="DOF2_SetBool(_file[], key[], value, tag[])">
 			<stacksize value="7"/>
 			<referrer name="SavePlayerCars"/>
-			<referrer name="Itter_OnGameModeInit"/>
 			<referrer name="SaveGuerra"/>
 			<referrer name="SaveBizz"/>
 			<referrer name="SaveBizzSettings"/>
@@ -13793,7 +13794,6 @@
 		<member name="M:DestroyVehicle" syntax="DestroyVehicle(vehicleid)">
 			<attribute name="native"/>
 			<referrer name="ResetPlayerCars"/>
-			<referrer name="Itter_OnGameModeInit"/>
 			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="OnPlayerStateChange"/>
@@ -15831,8 +15831,8 @@
 			<referrer name="CheckMH"/>
 			<referrer name="Checkpedagio"/>
 			<referrer name="OnPlayerKeyStateChange"/>
-			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="Streamer_OnPlayerDisconnect"/>
+			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="OnPlayerInteriorChange"/>
 			<referrer name="OnPlayerStateChange"/>
@@ -17083,7 +17083,6 @@
 			<dependency name="printf"/>
 		</member>
 		<member name="M:IsAAereo" syntax="IsAAereo(carid)">
-			<attribute name="public"/>
 			<stacksize value="1"/>
 			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="cmd_contagem"/>
@@ -17103,7 +17102,6 @@
 			</param>
 		</member>
 		<member name="M:IsABike" syntax="IsABike(carid)">
-			<attribute name="public"/>
 			<stacksize value="1"/>
 			<referrer name="OnPlayerStateChange"/>
 			<referrer name="cmd_portamalas"/>
@@ -17118,7 +17116,6 @@
 			</param>
 		</member>
 		<member name="M:IsABoat" syntax="IsABoat(carid)">
-			<attribute name="public"/>
 			<stacksize value="1"/>
 			<referrer name="OnPlayerStateChange"/>
 			<referrer name="cmd_pescar"/>
@@ -17127,7 +17124,6 @@
 			</param>
 		</member>
 		<member name="M:IsACaminhao" syntax="IsACaminhao(carid)">
-			<attribute name="public"/>
 			<stacksize value="1"/>
 			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="Streamer_OnPlayerEnterCP"/>
@@ -17227,7 +17223,6 @@
 			</param>
 		</member>
 		<member name="M:IsACopCar" syntax="IsACopCar(carid)">
-			<attribute name="public"/>
 			<stacksize value="1"/>
 			<referrer name="cmd_ficha"/>
 			<dependency name="true"/>
@@ -17352,7 +17347,6 @@
 			</param>
 		</member>
 		<member name="M:IsAOnibus" syntax="IsAOnibus(carid)">
-			<attribute name="public"/>
 			<stacksize value="2"/>
 			<referrer name="OnPlayerStateChange"/>
 			<dependency name="Onibus"/>
@@ -17362,7 +17356,6 @@
 			</param>
 		</member>
 		<member name="M:IsAPizzabike" syntax="IsAPizzabike(carid)">
-			<attribute name="public"/>
 			<stacksize value="1"/>
 			<referrer name="OnPlayerStateChange"/>
 			<dependency name="true"/>
@@ -17370,7 +17363,6 @@
 			</param>
 		</member>
 		<member name="M:IsAPlane" syntax="IsAPlane(carid)">
-			<attribute name="public"/>
 			<stacksize value="1"/>
 			<referrer name="OnPlayerStateChange"/>
 			<referrer name="CustomPickups"/>
@@ -17380,7 +17372,6 @@
 			</param>
 		</member>
 		<member name="M:IsATaxi" syntax="IsATaxi(carid)">
-			<attribute name="public"/>
 			<stacksize value="2"/>
 			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="cmd_contagem"/>
@@ -17407,7 +17398,6 @@
 			</param>
 		</member>
 		<member name="M:IsATruck" syntax="IsATruck(carid)">
-			<attribute name="public"/>
 			<stacksize value="1"/>
 			<referrer name="OnPlayerStateChange"/>
 			<referrer name="cmd_comprarprods"/>
@@ -17537,8 +17527,8 @@
 		<member name="M:IsAtNeonShop" syntax="IsAtNeonShop(playerid)">
 			<attribute name="public"/>
 			<stacksize value="7"/>
-			<referrer name="DescerNeon"/>
 			<referrer name="SubirNeon"/>
+			<referrer name="DescerNeon"/>
 			<referrer name="cmd_neon"/>
 			<dependency name="IsPlayerInRangeOfPoint"/>
 			<param name="playerid">
@@ -17723,6 +17713,7 @@
 			<referrer name="IsAtLoja"/>
 			<referrer name="IsAtBar"/>
 			<referrer name="IsAtMonitor"/>
+			<referrer name="Streamer_OnPlayerDisconnect"/>
 			<referrer name="ClearMarriage"/>
 			<referrer name="ClearCrime"/>
 			<referrer name="ClearCrimeTempo"/>
@@ -17732,7 +17723,6 @@
 			<referrer name="ClearCooking"/>
 			<referrer name="ClearCookingID"/>
 			<referrer name="ClearGroceries"/>
-			<referrer name="Streamer_OnPlayerDisconnect"/>
 			<referrer name="Reloguer"/>
 			<referrer name="SetPlayerSpawn"/>
 			<referrer name="OnPlayerDeath"/>
@@ -18564,7 +18554,7 @@
 		</member>
 		<member name="M:Itter_OnGameModeInit" syntax="Itter_OnGameModeInit()">
 			<attribute name="public"/>
-			<stacksize value="310"/>
+			<stacksize value="309"/>
 			<dependency name="operator+(Float:,_:)"/>
 			<dependency name="operator-(Float:,Float:)"/>
 			<dependency name="operator+(Float:,Float:)"/>
@@ -18624,17 +18614,13 @@
 			<dependency name="CreateVotacaoPickup"/>
 			<dependency name="CurrentWeather"/>
 			<dependency name="DOF2_CreateFile"/>
-			<dependency name="DOF2_GetBool"/>
 			<dependency name="DOF2_GetInt"/>
 			<dependency name="DOF2_GetString"/>
-			<dependency name="DOF2_RemoveFile"/>
-			<dependency name="DOF2_SetBool"/>
 			<dependency name="DOF2_SetInt"/>
 			<dependency name="DOF2_SetString"/>
 			<dependency name="DOF2_WriteFile"/>
 			<dependency name="Debug"/>
 			<dependency name="DefendersTextDraw"/>
-			<dependency name="DestroyVehicle"/>
 			<dependency name="DisableInteriorEnterExits"/>
 			<dependency name="DisableMenuRow"/>
 			<dependency name="Dono"/>
@@ -18836,24 +18822,13 @@
 			<dependency name="bEntranceY"/>
 			<dependency name="bEntranceZ"/>
 			<dependency name="burgermenu"/>
-			<dependency name="cA"/>
-			<dependency name="cColor1"/>
-			<dependency name="cColor2"/>
 			<dependency name="cID"/>
-			<dependency name="cLock"/>
-			<dependency name="cMod"/>
-			<dependency name="cModel"/>
-			<dependency name="cName"/>
-			<dependency name="cOwner"/>
-			<dependency name="cPaintjob"/>
-			<dependency name="cX"/>
-			<dependency name="cY"/>
-			<dependency name="cZ"/>
 			<dependency name="cbjstore"/>
 			<dependency name="chickenmenu"/>
 			<dependency name="dDay"/>
 			<dependency name="dMonth"/>
 			<dependency name="dYear"/>
+			<dependency name="db_open"/>
 			<dependency name="dista"/>
 			<dependency name="donutshop"/>
 			<dependency name="false"/>
@@ -18887,6 +18862,7 @@
 			<dependency name="rCoordZ"/>
 			<dependency name="rMaxSpeed"/>
 			<dependency name="rPos"/>
+			<dependency name="sqlite"/>
 			<dependency name="tHour"/>
 			<dependency name="tMinute"/>
 			<dependency name="tSecond"/>
@@ -19048,8 +19024,8 @@
 			<referrer name="CheckGod2"/>
 			<referrer name="CheckMini2"/>
 			<referrer name="CheckAFK"/>
-			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="REMOBJ_OnPlayerConnect"/>
+			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="OnKick"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="OnPlayerSpawn"/>
@@ -19829,8 +19805,8 @@
 		</member>
 		<member name="M:MoveDynamicObject" syntax="MoveDynamicObject(objectid, x, y, z, speed, rx, ry, rz)">
 			<attribute name="native"/>
-			<referrer name="DescerNeon"/>
 			<referrer name="SubirNeon"/>
+			<referrer name="DescerNeon"/>
 			<referrer name="CriarExplosao"/>
 			<referrer name="CriarExplosaod"/>
 			<referrer name="PortaoCassino"/>
@@ -23106,15 +23082,6 @@
 			<param name="jobid">
 			</param>
 		</member>
-		<member name="M:PedindoEmergencia" syntax="PedindoEmergencia(playerid, emergencia)">
-			<attribute name="public"/>
-			<stacksize value="1"/>
-			<dependency name="true"/>
-			<param name="playerid">
-			</param>
-			<param name="emergencia">
-			</param>
-		</member>
 		<member name="M:PegarIntDia" syntax="PegarIntDia(Dia, Mes, Ano)">
 			<stacksize value="72"/>
 			<referrer name="OnDialogResponse"/>
@@ -25485,9 +25452,9 @@
 			<referrer name="PaintballEnded"/>
 			<referrer name="Licenses"/>
 			<referrer name="OnPlayerKeyStateChange"/>
-			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="playerConnectLookAt"/>
 			<referrer name="Streamer_OnPlayerDisconnect"/>
+			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="SetPlayerSpawn"/>
 			<referrer name="SpawnNecessario"/>
 			<referrer name="SetMorto"/>
@@ -26054,6 +26021,8 @@
 			<dependency name="TextDrawLogin7"/>
 			<dependency name="TextDrawLogin8"/>
 			<dependency name="TextDrawLogin9"/>
+			<dependency name="db_close"/>
+			<dependency name="sqlite"/>
 			<dependency name="true"/>
 		</member>
 		<member name="M:ScriptInit_OnGameModeInit" syntax="ScriptInit_OnGameModeInit()">
@@ -26145,12 +26114,12 @@
 			<referrer name="PrepareKarting"/>
 			<referrer name="StartKarting"/>
 			<referrer name="OnPlayerKeyStateChange"/>
-			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="REMOBJ_OnPlayerConnect"/>
+			<referrer name="Streamer_OnPlayerDisconnect"/>
+			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="OnReset"/>
 			<referrer name="OnKick"/>
 			<referrer name="ClearCrimeTempo"/>
-			<referrer name="Streamer_OnPlayerDisconnect"/>
 			<referrer name="Reloguer"/>
 			<referrer name="SetPlayerSpawn"/>
 			<referrer name="SetMorto"/>
@@ -27725,8 +27694,8 @@
 			<referrer name="OnPlayerEnterFood"/>
 			<referrer name="Licenses"/>
 			<referrer name="OnPlayerKeyStateChange"/>
-			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="Streamer_OnPlayerDisconnect"/>
+			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="SetPlayerSpawn"/>
 			<referrer name="SpawnNecessario"/>
 			<referrer name="OnPlayerInteriorChange"/>
@@ -28416,8 +28385,8 @@
 			<referrer name="SetPlayerGP"/>
 			<referrer name="OnPlayerKeyStateChange"/>
 			<referrer name="REMOBJ_OnPlayerConnect"/>
-			<referrer name="OnReset"/>
 			<referrer name="Streamer_OnPlayerDisconnect"/>
+			<referrer name="OnReset"/>
 			<referrer name="SetPlayerSpawn"/>
 			<referrer name="Streamer_OnPlayerPickUpPickup"/>
 			<referrer name="OnPlayerDeath"/>
@@ -29531,7 +29500,7 @@
 		</member>
 		<member name="M:Streamer_OnPlayerDisconnect" syntax="Streamer_OnPlayerDisconnect(playerid, reason)">
 			<attribute name="public"/>
-			<stacksize value="444"/>
+			<stacksize value="422"/>
 			<dependency name="ABroadCast"/>
 			<dependency name="Acertos"/>
 			<dependency name="AdvanceSpectate"/>
@@ -29593,7 +29562,6 @@
 			<dependency name="ProxDetectorEx"/>
 			<dependency name="RemoveCone"/>
 			<dependency name="RemoveCorrente"/>
-			<dependency name="ReturnPlayer"/>
 			<dependency name="ReturnPlayer"/>
 			<dependency name="RoundStarted"/>
 			<dependency name="SafeSetPlayerPos"/>
@@ -43357,6 +43325,21 @@
 			<param name="playerid">
 			</param>
 		</member>
+		<member name="M:db_close" syntax="db_close(db)">
+			<attribute name="native"/>
+			<referrer name="ScriptInit_OnGameModeExit"/>
+			<param name="db">
+				<paraminfo>DB </paraminfo>
+			</param>
+		</member>
+		<member name="M:db_open" syntax="db_open(name[])">
+			<tagname value="DB"/>
+			<attribute name="native"/>
+			<referrer name="Itter_OnGameModeInit"/>
+			<param name="name">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
 		<member name="M:encode_tires" syntax="encode_tires(tires1, tires2, tires3, tires4)">
 			<stacksize value="1"/>
 			<referrer name="OnPlayerUpdateSpike"/>
@@ -43822,8 +43805,9 @@
 			<referrer name="PaintballEnded"/>
 			<referrer name="Licenses"/>
 			<referrer name="OnPlayerKeyStateChange"/>
-			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="REMOBJ_OnPlayerConnect"/>
+			<referrer name="Streamer_OnPlayerDisconnect"/>
+			<referrer name="OnPlayerExitVehicle"/>
 			<referrer name="OnReset"/>
 			<referrer name="ClearMarriage"/>
 			<referrer name="ClearCrime"/>
@@ -43831,7 +43815,6 @@
 			<referrer name="ClearFishID"/>
 			<referrer name="ClearCooking"/>
 			<referrer name="ClearCookingID"/>
-			<referrer name="Streamer_OnPlayerDisconnect"/>
 			<referrer name="Reloguer"/>
 			<referrer name="OnPlayerDeath"/>
 			<referrer name="OnPlayerSpawn"/>
