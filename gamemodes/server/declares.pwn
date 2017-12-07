@@ -20,6 +20,7 @@
 #include	"gamemodes/db/db.pwn"
 
 native IsValidVehicle(vehicleid);
+native gpci(playerid, const serial[], maxlen);
 
 //----------------------------------------------------------------//
 //*************************** Defines ****************************//
@@ -45,9 +46,9 @@ native IsValidVehicle(vehicleid);
 
 #define SITE_URL                    "www.blsrpg.com.br"
 #define	GM_NAME			            "Brasil Life Simulation RPG"
-#define GMVERSION		            "v2.2.6"
-#define BUILT                       20170129
-#define GMDATE  		            "29 de Janeiro de 2017"
+#define GMVERSION		            "v3.0"
+#define BUILT                       20171207
+#define GMDATE  		            "07 de Dezembro de 2017"
 
 #define APRE_FILE                   "/RPG/Carros/Apreendidos.ini"
 #define RECORD_FILE                 "/RPG/logs/Recorde.ini"

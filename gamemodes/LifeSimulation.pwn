@@ -4,24 +4,6 @@
 //----------------------------------------------------------------//
 // Créditos: Viniborn, Vendetta, FeaR
 
-// Adicionar mais música de qualidade ao iPod
-// Consertar as tasks
-
-/*_________________[IDÉIAS]_______________________
-| Multas ir para o veículo                        |
-| Mobiliar Casas                                  |
-| Necessitar de galão e isqueiro para incêndiar   |
-| O player terá que abrir uma conta no banco      |
-| Necessário pagar as contas da casa na lotérica  |
-| Player com máscara não ganha estrela em roubos  |
-| Reativar o hospital							  |
-...Jogador comum 15 segundos de recuperação | VIP Bronze 7 segundos de recuperação | VIP Prata = 5 segundos + spawn automático após recuperação | VIP Ouro = Spawn direto ao morrer
-| Player VIP pode alterar o toque do seu celular  |
-| Obrigatório o player ter carteira de motorista pra trabalhar em empregos que possuem veículos
-| Gang's terem o mesmo sistema das máfias, porém com as drogas, será necessário de sementes para plantar drogas nas fazendas, sementes são compradas em um lugar distante
-| Salários são pagos pela organização no payday   |
-|_________________________________________________|*/
-
 #include "gamemodes/server/declares.pwn"
 
 #include "gamemodes/neon/declares.pwn"
@@ -33,13 +15,7 @@
 //Imagem fundo
 new Text:FundoLogin;
 
-// Vida e Colete
-new PlayerText:vida[MAX_PLAYERS];
-new PlayerText:colete[MAX_PLAYERS];
-new Float:vida2[MAX_PLAYERS];
-new Float:colete2[MAX_PLAYERS];
-new Total[6];
-new Total2[6];
+#include "gamemodes/vidaColeteIndicator/declares.pwn"
 
 #include "gamemodes/eleicao/declares.pwn"
 
@@ -58,9 +34,6 @@ new IP[24];
 // Kuddy Eventos
 new Float:g_e@f[3],g_e@i[3],g_e@map_na[32],bool:g_e@b_checker,g_e@b_started,Float:g_e@fc[3],bool:g_e@autorizado[MAX_PLAYERS];
 new g@PlayerSu[MAX_PLAYERS]; // Poder dar outro su apenas dps de 1 min
-
-//gpci
-native gpci(playerid,const serial[],maxlen);
 
 //Modo SA
 #define MODOSA_JOGANDO      0
@@ -6478,20 +6451,9 @@ public OnPlayerUpdate(playerid)
         if (possible_crasher)
             return 0; //do not send fake data, prevents crash
     }*/
-	GetPlayerArmour(playerid, colete2[playerid]);
-	GetPlayerHealth(playerid, vida2[playerid]);
-
-	if(colete2[playerid] > 0) PlayerTextDrawShow(playerid, colete[playerid]);
-	else PlayerTextDrawHide(playerid, colete[playerid]);
-
-	format(Total, sizeof(Total), "%.0f", vida2[playerid]);
-	format(Total2, sizeof(Total2), "%.0f", colete2[playerid]);
-
-	//Textdrawstrings
-	PlayerTextDrawSetString(playerid, vida[playerid], Total);
-	PlayerTextDrawSetString(playerid, colete[playerid], Total2);
-
-    OnPlayerUpdateSpike(playerid);
+	#include "gamemodes/vidaColeteIndicator/onPlayerUpdate.pwn"
+	
+	OnPlayerUpdateSpike(playerid);
 	return 1;
 }
 
@@ -13848,8 +13810,7 @@ public SetMorto(playerid)
 //new bool:morreuPorBug[MAX_PLAYERS];
 public OnPlayerDeath(playerid, killerid, reason)
 {
-    PlayerTextDrawHide(playerid,vida[playerid]);
-	PlayerTextDrawHide(playerid,colete[playerid]);
+    #include "gamemodes/vidaColeteIndicator/onPlayerDeath"
 
 /*	if(morreuPorBug[playerid])
     {
@@ -14252,8 +14213,9 @@ public OnPlayerDeath(playerid, killerid, reason)
 public OnPlayerSpawn(playerid)
 {
     TextDrawHideForPlayer(playerid, FundoLogin);
-    PlayerTextDrawShow(playerid,vida[playerid]);
-	PlayerTextDrawShow(playerid,colete[playerid]);
+    
+	#include "gamemodes/vidaColeteIndicator/onPlayerSpawn.pwn"
+
 	if(Player[playerid][FirstSpawn] == true)
 	{
 		Player[playerid][FirstSpawn] = false;
@@ -57984,202 +57946,12 @@ public:do SaveAdminTimes(playerid, file[])
     return true;
 }
 
-stock GetPlantacaoQuality(plantId)
-{
-    new Retorno[32];
-    format(Retorno, 32, "---");
-
-    if(Plantacao[plantId][plantChance] == 0)
-        format(Retorno, 32, "Perfeita");
-    else if(Plantacao[plantId][plantChance] <= 5)
-        format(Retorno, 32, "Melhor");
-    else if(Plantacao[plantId][plantChance] <= 10)
-        format(Retorno, 32, "Ótima");
-    else if(Plantacao[plantId][plantChance] <= 15)
-        format(Retorno, 32, "Boa");
-    else if(Plantacao[plantId][plantChance] <= 20)
-        format(Retorno, 32, "Mediana");
-    else if(Plantacao[plantId][plantChance] <= 25)
-        format(Retorno, 32, "Ruim");
-    else
-        format(Retorno, 32, "Horrível");
-    return Retorno;
-}
-
-stock GetPlantacaoCommandString(plantId)
-{
-    new Retorno[64];
-    format(Retorno, 64, "");
-
-    if(IsACopOrg(gZonesData[Plantacao[plantId][plantPlace]][ZoneOwner]))
-    {
-        if(Plantacao[plantId][plantTime] != -1)
-            format(Retorno, 64, "\n{3C7035}Use {FFFFFF}/QueimarPlantacao");
-    }
-    else if(IsAGangOrgID(gZonesData[Plantacao[plantId][plantPlace]][ZoneOwner]))
-    {
-        if(Plantacao[plantId][plantTime] == 0)
-            format(Retorno, 64, "\n{3C7035}Use {FFFFFF}/ColherPlantacao");
-        else if(Plantacao[plantId][plantTime] == -1)
-            format(Retorno, 64, "\n{3C7035}Use {FFFFFF}/Plantar");
-    }
-    return Retorno;
-}
-
-stock GetPlantacaoString(plantId)
-{
-    new Retorno[256];
-    format(Retorno, 256, "");
-
-    if(Plantacao[plantId][plantTime] == 0)
-        format(Retorno, 256, "Pronto para Colheita%s", GetPlantacaoCommandString(plantId));
-    else if(Plantacao[plantId][plantTime] != -1)
-        format(Retorno, 256, "Tempo Restante: {FFFFFF}%s%s", Convert(Plantacao[plantId][plantTime]), GetPlantacaoCommandString(plantId));
-    else
-        format(Retorno, 256, "Preço: {FFFFFF}R$%d\n{3C7035}Qualidade: {FFFFFF}%s\n{3C7035}Produção: {FFFFFF}%d%s", Plantacao[plantId][plantAmount] * DRUG_PRICE, GetPlantacaoQuality(plantId), Plantacao[plantId][plantAmount] * MAX_DRUGS, GetPlantacaoCommandString(plantId));
-
-    return Retorno;
-}
-
-stock LoadPlantacao()
-{
-	new file[32];
-	format(file, sizeof(file), "/RPG/Plantacao.INI");
-
-	if(!DOF2_FileExists(file))
-        return SavePlantacao();
-
-    for(new i = 0; i < sizeof(Plantacao); i++)
-    {
-        format(thestring, sizeof(thestring), "P%d_T", i);
-        Plantacao[i][plantTime] = DOF2_GetInt(file, thestring);
-    }
-    return 1;
-}
-
-stock SavePlantacao()
-{
-	new file[32];
-	format(file, sizeof(file), "/RPG/Plantacao.INI");
-
-	if(!DOF2_FileExists(file))
-	    DOF2_CreateFile(file);
-
-    for(new i = 0; i < sizeof(Plantacao); i++)
-    {
-        format(thestring, sizeof(thestring), "P%d_T", i);
-        DOF2_SetInt(file, thestring, Plantacao[i][plantTime]);
-    }
-    DOF2_SaveFile();
-    return 1;
-}
-
-CMD:plantar(playerid)
-{
-    new plantId = -1;
-    for(new i = 0; i < sizeof(Plantacao); i++)
-    {
-        if(IsPlayerInRangeOfPoint(playerid, 1.5, Plantacao[i][plantPos][0], Plantacao[i][plantPos][1], Plantacao[i][plantPos][2]))
-        {
-            plantId = i;
-            break;
-        }
-    }
-    if(plantId == -1)
-        return SendClientMessage(playerid, 0xAA3333AA, "[ERRO]:{FFFFFF} Você não está perto de uma Plantação.");
-
-    if(gZonesData[Plantacao[plantId][plantPlace]][ZoneOwner] != GetPlayerOrg(playerid) || GetPlayerOrg(playerid) == 0)
-        return SendClientMessage(playerid, 0xAA3333AA, "[ERRO]:{FFFFFF} Você não é dono desta GangZone.");
-    if(Plantacao[plantId][plantTime] != -1)
-        return SendClientMessage(playerid, 0xAA3333AA, "[ERRO]:{FFFFFF} Algo já foi Plantado.");
-    if(GetPlayerGP(playerid) < Plantacao[plantId][plantAmount] * DRUG_PRICE)
-        return SendClientMessage(playerid, 0xAA3333AA, "[ERRO]:{FFFFFF} Você não pode Pagar.");
-    if(IsACop(playerid))
-        return SendClientMessage(playerid, 0xAA3333AA, "[ERRO]:{FFFFFF} Infelizmente você é um Homem da Lei e não pode plantar aqui."); //;-;
-
-    GivePlayerGP(playerid, -Plantacao[plantId][plantAmount] * DRUG_PRICE);
-    Plantacao[plantId][plantTime] = (2 * 60 * 60);
-
-    SendClientMessage(playerid, COLOR_YELLOW, "Você pagou por esta plantação, ela ficará pronta em 2 horas.");
-
-    Update3DTextLabelText(PlantacaoText[plantId], 0x3C7035FF, GetPlantacaoString(plantId));
-    return 1;
-}
-
-CMD:colherplantacao(playerid)
-{
-    new plantId = -1, objs = 0;
-    for(new i = 0; i < sizeof(Plantacao); i++)
-    {
-        if(IsPlayerInRangeOfPoint(playerid, 1.5, Plantacao[i][plantPos][0], Plantacao[i][plantPos][1], Plantacao[i][plantPos][2]))
-        {
-            plantId = i;
-            break;
-        }
-        else
-            objs += Plantacao[i][plantAmount];
-    }
-    if(plantId == -1)
-        return SendClientMessage(playerid, 0xAA3333AA, "[ERRO]:{FFFFFF} Você não está perto de uma Plantação.");
-
-    if(gZonesData[Plantacao[plantId][plantPlace]][ZoneOwner] != GetPlayerOrg(playerid) || GetPlayerOrg(playerid) == 0)
-        return SendClientMessage(playerid, 0xAA3333AA, "[ERRO]:{FFFFFF} Você não é dono desta GangZone.");
-    if(Plantacao[plantId][plantTime] != 0)
-        return SendClientMessage(playerid, 0xAA3333AA, "[ERRO]:{FFFFFF} A Plantação não está pronta para Colheita.");
-    if(IsACop(playerid))
-        return SendClientMessage(playerid, 0xAA3333AA, "[ERRO]:{FFFFFF} Infelizmente você é um Homem da Lei e não pode colher este produto."); //;-;
-
-    Plantacao[plantId][plantTime] = -1;
-    for(new o = objs; o < objs + Plantacao[plantId][plantAmount]; o++)
-        SetDynamicObjectPos(PlantacaoObj[o], PlantacaoObjFinalPos[o][0], PlantacaoObjFinalPos[o][1], PlantacaoObjFinalPos[o][2] - 2.0);
-
-    CofreOrg[GetPlayerOrg(playerid)][cfDrogas] += floatround((Plantacao[plantId][plantAmount] * MAX_DRUGS) * 0.95);
-    Player[playerid][pDrugs] += floatround((Plantacao[plantId][plantAmount] * MAX_DRUGS) * 0.05);
-
-    format(thestring, sizeof(thestring), "Você colheu as drogas e pegou %d para você.", floatround((Plantacao[plantId][plantAmount] * MAX_DRUGS) * 0.05));
-    SendClientMessage(playerid, COLOR_YELLOW, thestring);
-
-    Update3DTextLabelText(PlantacaoText[plantId], 0x3C7035FF, GetPlantacaoString(plantId));
-    return 1;
-}
-
-CMD:queimarplantacao(playerid)
-{
-    new plantId = -1, objs = 0;
-    for(new i = 0; i < sizeof(Plantacao); i++)
-    {
-        if(IsPlayerInRangeOfPoint(playerid, 1.5, Plantacao[i][plantPos][0], Plantacao[i][plantPos][1], Plantacao[i][plantPos][2]))
-        {
-            plantId = i;
-            break;
-        }
-        else
-            objs += Plantacao[i][plantAmount];
-    }
-    if(plantId == -1)
-        return SendClientMessage(playerid, COLOR_RED, "[ERRO]:{FFFFFF} Você não está perto de uma plantação.");
-
-    if(gZonesData[Plantacao[plantId][plantPlace]][ZoneOwner] != GetPlayerOrg(playerid) || GetPlayerOrg(playerid) == 0)
-        return SendClientMessage(playerid, COLOR_RED, "[ERRO]:{FFFFFF} Você não é dono desta GangZone.");
-    if(Plantacao[plantId][plantTime] == -1)
-        return SendClientMessage(playerid, COLOR_RED, "[ERRO]:{FFFFFF} Não há nada para queimar.");
-    if(!IsACop(playerid))
-        return SendClientMessage(playerid, COLOR_RED, "[ERRO]:{FFFFFF} Você não quer queimar realmente este produto maravilhoso, quer?"); //;-;
-
-    Plantacao[plantId][plantTime] = -1;
-    for(new o = objs; o < objs + Plantacao[plantId][plantAmount]; o++)
-        SetDynamicObjectPos(PlantacaoObj[o], PlantacaoObjFinalPos[o][0], PlantacaoObjFinalPos[o][1], PlantacaoObjFinalPos[o][2] - 2.0);
-
-    format(thestring, sizeof(thestring), "Você queimou estas drogas, causando R$%d de prejuízo para quem plantou.", Plantacao[plantId][plantAmount] * DRUG_PRICE);
-    SendClientMessage(playerid, COLOR_YELLOW, thestring);
-
-    Update3DTextLabelText(PlantacaoText[plantId], 0x3C7035FF, GetPlantacaoString(plantId));
-    return 1;
-}
+#include "gamemodes/plantacao/stocks.pwn"
+#include "gamemodes/plantacao/commands.pwn"
 
 main()
 {
-	printf("BLS v2.0 - Por Pedro Henrique, Kuddy Hirasawa e Leonardo Leal");
+	printf("BLS v3.0 - Por Pedro Henrique, Kuddy Hirasawa e Leonardo Leal");
 	printf("Kiba e vamos atrás da sua mãe.");
 	printf("Porque nois é nois");
 

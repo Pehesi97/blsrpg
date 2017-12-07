@@ -6572,10 +6572,8 @@
 			<referrer name="CheckGas"/>
 		</member>
 		<member name="F:Total">
-			<referrer name="OnPlayerUpdate"/>
 		</member>
 		<member name="F:Total2">
-			<referrer name="OnPlayerUpdate"/>
 		</member>
 		<member name="F:TrocandoCash">
 			<referrer name="OnDialogResponse"/>
@@ -7079,15 +7077,11 @@
 		</member>
 		<member name="F:colete">
 			<tagname value="PlayerText"/>
-			<referrer name="OnPlayerUpdate"/>
 			<referrer name="REMOBJ_OnPlayerConnect"/>
 			<referrer name="Streamer_OnPlayerDisconnect"/>
-			<referrer name="OnPlayerDeath"/>
-			<referrer name="OnPlayerSpawn"/>
 		</member>
 		<member name="F:colete2">
 			<tagname value="Float"/>
-			<referrer name="OnPlayerUpdate"/>
 		</member>
 		<member name="F:corrente">
 			<referrer name="RemoveCorrente"/>
@@ -8106,15 +8100,11 @@
 		</member>
 		<member name="F:vida">
 			<tagname value="PlayerText"/>
-			<referrer name="OnPlayerUpdate"/>
 			<referrer name="REMOBJ_OnPlayerConnect"/>
 			<referrer name="Streamer_OnPlayerDisconnect"/>
-			<referrer name="OnPlayerDeath"/>
-			<referrer name="OnPlayerSpawn"/>
 		</member>
 		<member name="F:vida2">
 			<tagname value="Float"/>
-			<referrer name="OnPlayerUpdate"/>
 		</member>
 		<member name="F:votou">
 			<referrer name="REMOBJ_OnPlayerConnect"/>
@@ -8649,7 +8639,6 @@
 		<member name="M:operator&gt;(Float:,_:)" syntax="operator&gt;(Float:,_:)(oper1, oper2)">
 			<tagname value="bool"/>
 			<stacksize value="4"/>
-			<referrer name="OnPlayerUpdate"/>
 			<referrer name="CheckGod2"/>
 			<referrer name="CheckMini2"/>
 			<referrer name="CheckWeaponHack"/>
@@ -15290,7 +15279,6 @@
 		</member>
 		<member name="M:GetPlayerArmour" syntax="GetPlayerArmour(playerid, &amp;armour)">
 			<attribute name="native"/>
-			<referrer name="OnPlayerUpdate"/>
 			<referrer name="CheckGod"/>
 			<referrer name="CheckMini"/>
 			<referrer name="CheckWeaponHack"/>
@@ -15446,7 +15434,6 @@
 		</member>
 		<member name="M:GetPlayerHealth" syntax="GetPlayerHealth(playerid, &amp;health)">
 			<attribute name="native"/>
-			<referrer name="OnPlayerUpdate"/>
 			<referrer name="CheckGod"/>
 			<referrer name="CheckGod2"/>
 			<referrer name="CheckMini"/>
@@ -20775,7 +20762,6 @@
 			<dependency name="PlayerPaintballKills"/>
 			<dependency name="PlayerPaintballing"/>
 			<dependency name="PlayerPlaySound"/>
-			<dependency name="PlayerTextDrawHide"/>
 			<dependency name="PlayerTied"/>
 			<dependency name="PlayerToPoint"/>
 			<dependency name="Procurando"/>
@@ -20803,7 +20789,6 @@
 			<dependency name="burgerexit"/>
 			<dependency name="carbrowse"/>
 			<dependency name="cherifeexit"/>
-			<dependency name="colete"/>
 			<dependency name="dw"/>
 			<dependency name="false"/>
 			<dependency name="format"/>
@@ -20831,7 +20816,6 @@
 			<dependency name="pWantedDeaths"/>
 			<dependency name="random"/>
 			<dependency name="true"/>
-			<dependency name="vida"/>
 			<param name="playerid">
 			</param>
 			<param name="killerid">
@@ -22133,7 +22117,6 @@
 			<dependency name="PlaySoundForPlayer"/>
 			<dependency name="Player"/>
 			<dependency name="Player"/>
-			<dependency name="PlayerTextDrawShow"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="ServerLogo1"/>
 			<dependency name="ServerLogo2"/>
@@ -22146,7 +22129,6 @@
 			<dependency name="StopMusic"/>
 			<dependency name="TextDrawHideForPlayer"/>
 			<dependency name="TextDrawShowForPlayer"/>
-			<dependency name="colete"/>
 			<dependency name="false"/>
 			<dependency name="fexist"/>
 			<dependency name="format"/>
@@ -22160,7 +22142,6 @@
 			<dependency name="pName"/>
 			<dependency name="pSex"/>
 			<dependency name="true"/>
-			<dependency name="vida"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -22521,21 +22502,8 @@
 		</member>
 		<member name="M:OnPlayerUpdate" syntax="OnPlayerUpdate(playerid)">
 			<attribute name="public"/>
-			<stacksize value="6"/>
-			<dependency name="operator&gt;(Float:,_:)"/>
-			<dependency name="GetPlayerArmour"/>
-			<dependency name="GetPlayerHealth"/>
+			<stacksize value="4"/>
 			<dependency name="OnPlayerUpdateSpike"/>
-			<dependency name="PlayerTextDrawHide"/>
-			<dependency name="PlayerTextDrawSetString"/>
-			<dependency name="PlayerTextDrawShow"/>
-			<dependency name="Total"/>
-			<dependency name="Total2"/>
-			<dependency name="colete"/>
-			<dependency name="colete2"/>
-			<dependency name="format"/>
-			<dependency name="vida"/>
-			<dependency name="vida2"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -23447,9 +23415,7 @@
 		</member>
 		<member name="M:PlayerTextDrawHide" syntax="PlayerTextDrawHide(playerid, text)">
 			<attribute name="native"/>
-			<referrer name="OnPlayerUpdate"/>
 			<referrer name="Streamer_OnPlayerDisconnect"/>
-			<referrer name="OnPlayerDeath"/>
 			<param name="playerid">
 			</param>
 			<param name="text">
@@ -23542,7 +23508,6 @@
 		<member name="M:PlayerTextDrawSetString" syntax="PlayerTextDrawSetString(playerid, text, string[])">
 			<attribute name="native"/>
 			<referrer name="UpdatePageTextDraw"/>
-			<referrer name="OnPlayerUpdate"/>
 			<param name="playerid">
 			</param>
 			<param name="text">
@@ -23559,8 +23524,6 @@
 			<referrer name="CreatePlayerHeaderTextDraw"/>
 			<referrer name="CreatePlayerBackgroundTextDraw"/>
 			<referrer name="CreateModelPreviewTextDraw"/>
-			<referrer name="OnPlayerUpdate"/>
-			<referrer name="OnPlayerSpawn"/>
 			<param name="playerid">
 			</param>
 			<param name="text">
@@ -43771,7 +43734,6 @@
 			<referrer name="LoadPlayerCars"/>
 			<referrer name="SavePlayerCars"/>
 			<referrer name="OnPlayerEnterDynamicArea"/>
-			<referrer name="OnPlayerUpdate"/>
 			<referrer name="Itter_OnGameModeInit"/>
 			<referrer name="OnPlayerClickPlayer"/>
 			<referrer name="SaveTrunk"/>
