@@ -744,306 +744,306 @@
 		</member>
 		<member name="T:pInfo" value="869">
 			<tagname value="pInfo"/>
-			<member name="C:pCompletedNonRepTask" value="0">
+			<member name="C:pID" value="0">
+			</member>
+			<member name="C:pCompletedNonRepTask" value="1">
 				<size value="5"/>
 			</member>
-			<member name="C:pDynamicBB" value="5">
+			<member name="C:pDynamicBB" value="6">
 			</member>
-			<member name="C:pDynamicBBLabel" value="6">
+			<member name="C:pDynamicBBLabel" value="7">
 				<tagname value="Text3D"/>
 			</member>
-			<member name="C:pDynamicBBArea" value="7">
+			<member name="C:pDynamicBBArea" value="8">
 			</member>
-			<member name="C:pBoombox" value="8">
+			<member name="C:pBoombox" value="9">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pDynamicBBX" value="9">
+			<member name="C:pDynamicBBX" value="10">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pDynamicBBY" value="10">
+			<member name="C:pDynamicBBY" value="11">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pDynamicBBZ" value="11">
+			<member name="C:pDynamicBBZ" value="12">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pDynamicBBInt" value="12">
+			<member name="C:pDynamicBBInt" value="13">
 			</member>
-			<member name="C:pDynamicBBVW" value="13">
+			<member name="C:pDynamicBBVW" value="14">
 			</member>
-			<member name="C:pDynamicBBStation" value="14">
+			<member name="C:pDynamicBBStation" value="15">
 				<size value="128"/>
 			</member>
-			<member name="C:gSpectateID" value="142">
+			<member name="C:gSpectateID" value="143">
 			</member>
-			<member name="C:gSpectateType" value="143">
+			<member name="C:gSpectateType" value="144">
 			</member>
-			<member name="C:TurfKills" value="144">
+			<member name="C:TurfKills" value="145">
 			</member>
-			<member name="C:TurfDeaths" value="145">
+			<member name="C:TurfDeaths" value="146">
 			</member>
-			<member name="C:WarPoints" value="146">
+			<member name="C:WarPoints" value="147">
 			</member>
-			<member name="C:SenhaFila" value="147">
+			<member name="C:SenhaFila" value="148">
 			</member>
-			<member name="C:MuteTime" value="148">
+			<member name="C:MuteTime" value="149">
 			</member>
-			<member name="C:Spawned" value="149">
+			<member name="C:Spawned" value="150">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:AllowGod" value="150">
+			<member name="C:AllowGod" value="151">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pMorto" value="151">
+			<member name="C:pMorto" value="152">
 			</member>
-			<member name="C:FirstSpawn" value="152">
+			<member name="C:FirstSpawn" value="153">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:SeePoints" value="153">
+			<member name="C:SeePoints" value="154">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:SeeName" value="154">
+			<member name="C:SeeName" value="155">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:SeeChecksBar" value="155">
+			<member name="C:SeeChecksBar" value="156">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:JailReason" value="156">
+			<member name="C:JailReason" value="157">
 				<size value="128"/>
 			</member>
-			<member name="C:pName" value="284">
+			<member name="C:pName" value="285">
 				<size value="24"/>
 			</member>
-			<member name="C:pKey" value="308">
+			<member name="C:pKey" value="309">
 				<size value="128"/>
 			</member>
-			<member name="C:pPass" value="436">
+			<member name="C:pPass" value="437">
 				<size value="128"/>
 			</member>
-			<member name="C:pSeatBelt" value="564">
+			<member name="C:pSeatBelt" value="565">
 			</member>
-			<member name="C:pAutoBelt" value="565">
+			<member name="C:pAutoBelt" value="566">
 				<tagname value="bool"/>
 			</member>
-			<member name="C:pCapacete" value="566">
+			<member name="C:pCapacete" value="567">
 			</member>
-			<member name="C:pLevel" value="567">
+			<member name="C:pLevel" value="568">
 			</member>
-			<member name="C:pAdmin" value="568">
+			<member name="C:pAdmin" value="569">
 			</member>
-			<member name="C:pAdminWork" value="569">
+			<member name="C:pAdminWork" value="570">
 			</member>
-			<member name="C:pEnigma" value="570">
+			<member name="C:pEnigma" value="571">
 			</member>
-			<member name="C:pDonateRank" value="571">
+			<member name="C:pDonateRank" value="572">
 			</member>
-			<member name="C:gPupgrade" value="572">
+			<member name="C:gPupgrade" value="573">
 			</member>
-			<member name="C:pConnectTime" value="573">
+			<member name="C:pConnectTime" value="574">
 			</member>
-			<member name="C:pReg" value="574">
+			<member name="C:pReg" value="575">
 			</member>
-			<member name="C:pSex" value="575">
+			<member name="C:pSex" value="576">
 			</member>
-			<member name="C:pAge" value="576">
+			<member name="C:pAge" value="577">
 			</member>
-			<member name="C:pOrigin" value="577">
+			<member name="C:pOrigin" value="578">
 			</member>
-			<member name="C:pExp" value="578">
+			<member name="C:pExp" value="579">
 			</member>
-			<member name="C:pMoney" value="579">
+			<member name="C:pMoney" value="580">
 			</member>
-			<member name="C:pBLSCash" value="580">
+			<member name="C:pBLSCash" value="581">
 			</member>
-			<member name="C:pHoraVIP" value="581">
+			<member name="C:pHoraVIP" value="582">
 			</member>
-			<member name="C:pVIP" value="582">
+			<member name="C:pVIP" value="583">
 			</member>
-			<member name="C:pBank" value="583">
+			<member name="C:pBank" value="584">
 			</member>
-			<member name="C:pCrimes" value="584">
+			<member name="C:pCrimes" value="585">
 			</member>
-			<member name="C:pCar" value="585">
+			<member name="C:pCar" value="586">
 				<size value="5"/>
 			</member>
-			<member name="C:pKills" value="590">
+			<member name="C:pKills" value="591">
 			</member>
-			<member name="C:pDeaths" value="591">
+			<member name="C:pDeaths" value="592">
 			</member>
-			<member name="C:pArrested" value="592">
+			<member name="C:pArrested" value="593">
 			</member>
-			<member name="C:pWantedDeaths" value="593">
+			<member name="C:pWantedDeaths" value="594">
 			</member>
-			<member name="C:pPhoneBook" value="594">
+			<member name="C:pPhoneBook" value="595">
 			</member>
-			<member name="C:pPhone" value="595">
+			<member name="C:pPhone" value="596">
 			</member>
-			<member name="C:pLottoNr" value="596">
+			<member name="C:pLottoNr" value="597">
 			</member>
-			<member name="C:pFishes" value="597">
+			<member name="C:pFishes" value="598">
 			</member>
-			<member name="C:pBiggestFish" value="598">
+			<member name="C:pBiggestFish" value="599">
 			</member>
-			<member name="C:pJob" value="599">
+			<member name="C:pJob" value="600">
 			</member>
-			<member name="C:pHeadValue" value="600">
+			<member name="C:pHeadValue" value="601">
 			</member>
-			<member name="C:pJailed" value="601">
+			<member name="C:pJailed" value="602">
 			</member>
-			<member name="C:pJailTime" value="602">
+			<member name="C:pJailTime" value="603">
 			</member>
-			<member name="C:pJailTimetotal" value="603">
+			<member name="C:pJailTimetotal" value="604">
 			</member>
-			<member name="C:pMats" value="604">
+			<member name="C:pMats" value="605">
 			</member>
-			<member name="C:pDrugs" value="605">
+			<member name="C:pDrugs" value="606">
 			</member>
-			<member name="C:pLuta" value="606">
+			<member name="C:pLuta" value="607">
 			</member>
-			<member name="C:pCigarro" value="607">
+			<member name="C:pCigarro" value="608">
 			</member>
-			<member name="C:pPC" value="608">
+			<member name="C:pPC" value="609">
 			</member>
-			<member name="C:pNBook" value="609">
+			<member name="C:pNBook" value="610">
 			</member>
-			<member name="C:p3G" value="610">
+			<member name="C:p3G" value="611">
 			</member>
-			<member name="C:pCorda" value="611">
+			<member name="C:pCorda" value="612">
 			</member>
-			<member name="C:pPlano" value="612">
+			<member name="C:pPlano" value="613">
 			</member>
-			<member name="C:pVotou" value="613">
+			<member name="C:pVotou" value="614">
 			</member>
-			<member name="C:pBan" value="614">
+			<member name="C:pBan" value="615">
 			</member>
-			<member name="C:pLeader" value="615">
+			<member name="C:pLeader" value="616">
 			</member>
-			<member name="C:pMember" value="616">
+			<member name="C:pMember" value="617">
 			</member>
-			<member name="C:pFMember" value="617">
+			<member name="C:pFMember" value="618">
 			</member>
-			<member name="C:pRank" value="618">
+			<member name="C:pRank" value="619">
 			</member>
-			<member name="C:pChar" value="619">
+			<member name="C:pChar" value="620">
 			</member>
-			<member name="C:pContractTime" value="620">
+			<member name="C:pContractTime" value="621">
 			</member>
-			<member name="C:pDetSkill" value="621">
+			<member name="C:pDetSkill" value="622">
 			</member>
-			<member name="C:pSexSkill" value="622">
+			<member name="C:pSexSkill" value="623">
 			</member>
-			<member name="C:pBoxSkill" value="623">
+			<member name="C:pBoxSkill" value="624">
 			</member>
-			<member name="C:pLawSkill" value="624">
+			<member name="C:pLawSkill" value="625">
 			</member>
-			<member name="C:pMechSkill" value="625">
+			<member name="C:pMechSkill" value="626">
 			</member>
-			<member name="C:pJackSkill" value="626">
+			<member name="C:pJackSkill" value="627">
 			</member>
-			<member name="C:pCarSkill" value="627">
+			<member name="C:pCarSkill" value="628">
 			</member>
-			<member name="C:pNewsSkill" value="628">
+			<member name="C:pNewsSkill" value="629">
 			</member>
-			<member name="C:pDrugsSkill" value="629">
+			<member name="C:pDrugsSkill" value="630">
 			</member>
-			<member name="C:pCookSkill" value="630">
+			<member name="C:pCookSkill" value="631">
 			</member>
-			<member name="C:pFishSkill" value="631">
+			<member name="C:pFishSkill" value="632">
 			</member>
-			<member name="C:pHealth" value="632">
+			<member name="C:pHealth" value="633">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pSHealth" value="633">
+			<member name="C:pSHealth" value="634">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pLocalX" value="634">
+			<member name="C:pLocalX" value="635">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pLocalY" value="635">
+			<member name="C:pLocalY" value="636">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pLocalZ" value="636">
+			<member name="C:pLocalZ" value="637">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pInt" value="637">
+			<member name="C:pInt" value="638">
 			</member>
-			<member name="C:pLocal" value="638">
+			<member name="C:pLocal" value="639">
 			</member>
-			<member name="C:pModel" value="639">
+			<member name="C:pModel" value="640">
 			</member>
-			<member name="C:pPnumber" value="640">
+			<member name="C:pPnumber" value="641">
 			</member>
-			<member name="C:pHouseKey" value="641">
+			<member name="C:pHouseKey" value="642">
 			</member>
-			<member name="C:pPaluguelkey" value="642">
+			<member name="C:pPaluguelkey" value="643">
 			</member>
-			<member name="C:pBizKey" value="643">
+			<member name="C:pBizKey" value="644">
 			</member>
-			<member name="C:pAtend" value="644">
+			<member name="C:pAtend" value="645">
 			</member>
-			<member name="C:pNota" value="645">
+			<member name="C:pNota" value="646">
 			</member>
-			<member name="C:pLocalSpawn" value="646">
+			<member name="C:pLocalSpawn" value="647">
 			</member>
-			<member name="C:pBonusExp" value="647">
+			<member name="C:pBonusExp" value="648">
 			</member>
-			<member name="C:LastSpeed" value="648">
+			<member name="C:LastSpeed" value="649">
 				<tagname value="Float"/>
 			</member>
-			<member name="C:pCarLic" value="649">
+			<member name="C:pCarLic" value="650">
 			</member>
-			<member name="C:pCarLicPoints" value="650">
+			<member name="C:pCarLicPoints" value="651">
 			</member>
-			<member name="C:pFlyLic" value="651">
+			<member name="C:pFlyLic" value="652">
 			</member>
-			<member name="C:pBoatLic" value="652">
+			<member name="C:pBoatLic" value="653">
 			</member>
-			<member name="C:pFishLic" value="653">
+			<member name="C:pFishLic" value="654">
 			</member>
-			<member name="C:pGunLic" value="654">
+			<member name="C:pGunLic" value="655">
 			</member>
-			<member name="C:pPacoteArmas" value="655">
+			<member name="C:pPacoteArmas" value="656">
 			</member>
-			<member name="C:pGun1" value="656">
+			<member name="C:pGun1" value="657">
 			</member>
-			<member name="C:pGun2" value="657">
+			<member name="C:pGun2" value="658">
 			</member>
-			<member name="C:pGun3" value="658">
+			<member name="C:pGun3" value="659">
 			</member>
-			<member name="C:pGun4" value="659">
+			<member name="C:pGun4" value="660">
 			</member>
-			<member name="C:pAmmo1" value="660">
+			<member name="C:pAmmo1" value="661">
 			</member>
-			<member name="C:pAmmo2" value="661">
+			<member name="C:pAmmo2" value="662">
 			</member>
-			<member name="C:pAmmo3" value="662">
+			<member name="C:pAmmo3" value="663">
 			</member>
-			<member name="C:pAmmo4" value="663">
+			<member name="C:pAmmo4" value="664">
 			</member>
-			<member name="C:pCarTime" value="664">
+			<member name="C:pCarTime" value="665">
 			</member>
-			<member name="C:pPayDayHad" value="665">
+			<member name="C:pPayDayHad" value="666">
 			</member>
-			<member name="C:pCDPlayer" value="666">
+			<member name="C:pCDPlayer" value="667">
 			</member>
-			<member name="C:pWins" value="667">
+			<member name="C:pWins" value="668">
 			</member>
-			<member name="C:pLoses" value="668">
+			<member name="C:pLoses" value="669">
 			</member>
-			<member name="C:pAlcoholPerk" value="669">
+			<member name="C:pAlcoholPerk" value="670">
 			</member>
-			<member name="C:pDrugPerk" value="670">
+			<member name="C:pDrugPerk" value="671">
 			</member>
-			<member name="C:pMiserPerk" value="671">
+			<member name="C:pMiserPerk" value="672">
 			</member>
-			<member name="C:pPainPerk" value="672">
+			<member name="C:pPainPerk" value="673">
 			</member>
-			<member name="C:pTraderPerk" value="673">
+			<member name="C:pTraderPerk" value="674">
 			</member>
-			<member name="C:pTut" value="674">
+			<member name="C:pTut" value="675">
 			</member>
-			<member name="C:pWarns" value="675">
-			</member>
-			<member name="C:pAdjustable" value="676">
+			<member name="C:pWarns" value="676">
 			</member>
 			<member name="C:pFuel" value="677">
 			</member>
@@ -4880,7 +4880,6 @@
 			<referrer name="CheckGas"/>
 			<referrer name="SetPlayerWeapons"/>
 			<referrer name="ShowStats"/>
-			<referrer name="SaveServer"/>
 			<referrer name="SortearLoteria"/>
 			<referrer name="PayDay"/>
 			<referrer name="OnPlayerRegister"/>
@@ -21494,7 +21493,6 @@
 			<dependency name="multa"/>
 			<dependency name="multas"/>
 			<dependency name="p3G"/>
-			<dependency name="pAdjustable"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pAge"/>
 			<dependency name="pAlcoholPerk"/>
@@ -21693,7 +21691,6 @@
 			<dependency name="getdate"/>
 			<dependency name="gpci"/>
 			<dependency name="p3G"/>
-			<dependency name="pAdjustable"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pAge"/>
 			<dependency name="pAlcoholPerk"/>
@@ -21891,7 +21888,6 @@
 			<dependency name="multa"/>
 			<dependency name="multas"/>
 			<dependency name="p3G"/>
-			<dependency name="pAdjustable"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pAge"/>
 			<dependency name="pAlcoholPerk"/>
@@ -24382,7 +24378,6 @@
 			<dependency name="noteste"/>
 			<dependency name="nowh"/>
 			<dependency name="p3G"/>
-			<dependency name="pAdjustable"/>
 			<dependency name="pAdmin"/>
 			<dependency name="pAdminWork"/>
 			<dependency name="pAge"/>
@@ -25901,8 +25896,6 @@
 			<referrer name="ScriptInit_OnGameModeExit"/>
 			<referrer name="cmd_salvarcontas"/>
 			<dependency name="OnPlayerSave"/>
-			<dependency name="Player"/>
-			<dependency name="Player"/>
 			<dependency name="Player@YSII_Ag"/>
 			<dependency name="SaveAll"/>
 			<dependency name="SaveConfig"/>
@@ -25913,7 +25906,6 @@
 			<dependency name="SavePix"/>
 			<dependency name="SavePlantacao"/>
 			<dependency name="SaveZones"/>
-			<dependency name="pAdjustable"/>
 		</member>
 		<member name="M:SaveTrunk" syntax="SaveTrunk(idx)">
 			<attribute name="public"/>
@@ -29586,7 +29578,6 @@
 			<dependency name="gPlayerLogged"/>
 			<dependency name="gSpectateID"/>
 			<dependency name="gettime"/>
-			<dependency name="pAdjustable"/>
 			<dependency name="pCDPlayer"/>
 			<dependency name="pCone"/>
 			<dependency name="pCorrente"/>

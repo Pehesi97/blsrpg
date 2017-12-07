@@ -1,0 +1,1 @@
+        DOF2_SetInt(file, "GMBuilt", BUILT);

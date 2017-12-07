@@ -398,7 +398,6 @@ public OnPlayerConnect(playerid)
 	Player[playerid][pRoadblock] = -1;
 	Player[playerid][pCone] = 0;
 	Player[playerid][pCorrente] = -1;
-	Player[playerid][pAdjustable] = 0;
 	Player[playerid][pCreditos] = 0;
 	Player[playerid][pIrcId] = -1;
 	Player[playerid][LastVeh] = INVALID_VEHICLE_ID;
@@ -604,7 +603,6 @@ public OnPlayerDisconnect(playerid, reason)
 	    carbrowse[playerid] = 0;
  	}                            */
 
-	Player[playerid][pAdjustable] = 1;
 	Teste[playerid] = 0;
     TakingLesson[playerid] = 0;
     Acertos[playerid] = 0;

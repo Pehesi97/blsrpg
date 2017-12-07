@@ -1,5 +1,6 @@
 enum pInfo
 {
+	pID,
     // Banco
     pName[MAX_PLAYER_NAME], // Nome
 	pKey[128], // 
@@ -115,7 +116,6 @@ enum pInfo
 	pTraderPerk,
 	pTut,
 	pWarns,
-	pAdjustable,
 	pFuel,
 	pRoadblock,
 	pCone,

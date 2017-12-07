@@ -41,19 +41,7 @@ new Float:colete2[MAX_PLAYERS];
 new Total[6];
 new Total2[6];
 
-//Eleição
-new VotacaoPickup,
-    Text3D:VotacaoText,
-    VotacaoID,
-    bool:VotacaoAberta;
-
-enum CandidatoInf
-{
-    candNome[MAX_PLAYER_NAME],
-    candNumero,
-    candVotos
-}
-new CandidatoInfo[25][CandidatoInf];
+#include "gamemodes/eleicao/declares.pwn"
 
 #include "gamemodes/timeFix/declares.pwn"
 
@@ -4681,6 +4669,7 @@ new pMarriedTo[MAX_PLAYERS][128];
 
 enum pInfo
 {
+	pID,
 	// Milestones
 	pCompletedNonRepTask[5],
 
@@ -4827,7 +4816,6 @@ enum pInfo
 	pTraderPerk,
 	pTut,
 	pWarns,
-	pAdjustable,
 	pFuel,
 	pRoadblock,
 	pCone,
@@ -6727,13 +6715,9 @@ public OnGameModeInit()
 	InitPixLoad();
 	LoadGangDrugs();
 	LoadIrc();
-    LoadEleicao();
     LoadPlantacao();
 
-    if(VotacaoAberta)
-        CreateVotacaoPickup();
-
-	//EleicoesFuncao(0);
+	#include "gamemodes/eleicao/onGameModeInit.pwn"
 
 	for(new x = 0; x < MAX_RADARS; x ++)
 	{
@@ -8430,7 +8414,8 @@ public OnGameModeExit()
 	SavePlayerCars();
 
     //WriteLockedCars();
-	//EleicoesFuncao(5);
+	
+	#include "gamemodes/eleicao/onGameModeExit.pwn"
 
 	DOF2_Exit();
 	#include "gamemodes/db/onGameModeExit.pwn"
@@ -18978,14 +18963,12 @@ public SaveServer()
 	SaveGangDrugs();
 	SaveIrc();
     SaveGuerra();
-    SaveEleicao();
     SavePlantacao();
 
+	#include "gamemodes/eleicao/saveServer.pwn"
+
     foreach(new i: Player)
-	{
-	    Player[i][pAdjustable]=1;
 		OnPlayerSave(i);
- 	}
 }
 
 public IsPlayerInTurf(playerid, turfid)
@@ -19472,7 +19455,8 @@ public OnPlayerRegister(playerid, password[], cleanpw[])
 		Player[playerid][pHoraVIP] = 0;
 		Player[playerid][pVIP] = 0;
 		GivePlayerGP(playerid, 2000);
-		DOF2_SetInt(file, "GMBuilt", BUILT);
+	
+		#include "gamemodes/vcs/onPlayerRegister.pwn"
 
 		SendClientMessage(playerid,SERVER_INFO,"[Aviso]: {FFFFFF}Você ganhou R$2.000 em mãos e no banco para iniciar sua nova vida!");
 		SendClientMessage(playerid,COLOR_WHITE,"{FF0000}[BLS]: {FFFFFF}Temos um pacote de Edição de RG para novatos! {FFFF00}/pacoteiniciante{FFFFFF}!!");
@@ -19615,7 +19599,6 @@ public OnPlayerRegister(playerid, password[], cleanpw[])
 		DOF2_SetInt(file, "TraderPerk", Player[playerid][pTraderPerk]);
 		DOF2_SetInt(file, "Tutorial", Player[playerid][pTut]);
 		DOF2_SetInt(file, "Warnings", Player[playerid][pWarns]);
-		DOF2_SetInt(file, "Adjustable", Player[playerid][pAdjustable]);
 		DOF2_SetInt(file, "Fuel", Player[playerid][pFuel]);
 		DOF2_SetInt(file, "Married", Player[playerid][pMarried]);
 		DOF2_SetString(file, "Prisao",Player[playerid][JailReason]);
@@ -19784,7 +19767,6 @@ public OnPlayerSave(playerid)
 			DOF2_SetInt(file, "TraderPerk", Player[playerid][pTraderPerk]);
 			DOF2_SetInt(file, "Tutorial", Player[playerid][pTut]);
 			DOF2_SetInt(file, "Warnings", Player[playerid][pWarns]);
-			DOF2_SetInt(file, "Adjustable", Player[playerid][pAdjustable]);
 			DOF2_SetInt(file, "Fuel", Player[playerid][pFuel]);
 			DOF2_SetInt(file, "Married", Player[playerid][pMarried]);
 			DOF2_SetString(file, "MarriedTo",pMarriedTo[playerid]);
@@ -19848,7 +19830,7 @@ public OnPlayerLogin(playerid,password[], cleanpw[])
 		{
 		    DOF2_SetString(file,"Password", cleanpw);
 		    Player[playerid][pMorto] = 0;
-		    new built = DOF2_GetInt(file, "GMBuilt");
+		    
 	        DOF2_SetInt(file, "Online", 1);
 	        DOF2_SaveFile();
 
@@ -19975,7 +19957,6 @@ public OnPlayerLogin(playerid,password[], cleanpw[])
 			Player[playerid][pTraderPerk] = DOF2_GetInt(file, "TraderPerk");
 			Player[playerid][pTut] = DOF2_GetInt(file, "Tutorial");
 			Player[playerid][pWarns] = DOF2_GetInt(file, "Warnings");
-			Player[playerid][pAdjustable] = DOF2_GetInt(file, "Adjustable");
 			Player[playerid][pFuel] = DOF2_GetInt(file, "Fuel");
 			Player[playerid][pMarried] = DOF2_GetInt(file, "Married");
 			format(pMarriedTo[playerid],128,"%s", DOF2_GetString(file, "MarriedTo"));
@@ -20023,33 +20004,8 @@ public OnPlayerLogin(playerid,password[], cleanpw[])
                 SendClientMessage(playerid, COLOR_RED, strin);
             }
 
-		    if(built < BUILT)
-		    {
-				if(built < 20170116)
-				{
-				    if(Pacote[playerid] != 0)
-				    {
-				        CompletarNonRepMilestone(playerid, 0);
-				    }
-				    if(Player[playerid][pJob] != DESEMPREGADO)
-				    {
-						CompletarNonRepMilestone(playerid, 1);
-						CompletarNonRepMilestone(playerid, 2);
-				    }
-				    if(Player[playerid][pCarLic] == 1)
-				    {
-						CompletarNonRepMilestone(playerid, 3);
-				    }
-				    if(Player[playerid][pMember] != 0 || Player[playerid][pLeader] != 0)
-				    {
-						CompletarNonRepMilestone(playerid, 4);
-				    }
-				}
+			#include "gamemodes/vcs/onPlayerLogin.pwn"
 
-                SendClientMessage(playerid, 0xFFFF00FF, "[Update]: {FFFFFF}Sua conta foi atualizada de acordo com a nova versão do servidor.");
-				DOF2_SetInt(file, "GMBuilt", BUILT);
-                DOF2_SaveFile();
-			}
 			gPlayerLogged[playerid] = 1;
 		}
 		else
@@ -20102,7 +20058,6 @@ public OnPlayerLogin(playerid,password[], cleanpw[])
 		else
 		    ComprouCash[playerid] = 0;
 
-		Player[playerid][pAdjustable] = 0;
 		ResetPlayerMoney(playerid);
 		Morrendo[playerid] = 0;
 		Hospital[playerid] = 0;
