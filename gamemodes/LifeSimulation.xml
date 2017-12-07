@@ -1665,8 +1665,6 @@
 			<referrer name="DOF2_SortSection"/>
 			<referrer name="SSCANF_OnFilterScriptInit"/>
 			<referrer name="strfromliteral"/>
-			<referrer name="NeonAdded"/>
-			<referrer name="NeonRemoved"/>
 			<referrer name="IniciarGuerra"/>
 			<referrer name="EndSuCount"/>
 			<referrer name="SpeakAnim"/>
@@ -1682,7 +1680,6 @@
 			<referrer name="DelMembro"/>
 			<referrer name="DelApreendido"/>
 			<referrer name="AddApreendido"/>
-			<referrer name="CompletarNonRepMilestone"/>
 			<referrer name="Pedindo"/>
 			<referrer name="Aceitando"/>
 			<referrer name="RemoverMarker"/>
@@ -2438,6 +2435,9 @@
 			<referrer name="IsAPizzabike"/>
 			<referrer name="IsATruck"/>
 			<referrer name="IsAnTransportVehicle"/>
+			<referrer name="NeonAdded"/>
+			<referrer name="NeonRemoved"/>
+			<referrer name="CompletarNonRepMilestone"/>
 		</member>
 
 		<!-- variables -->
@@ -3492,9 +3492,9 @@
 			<referrer name="cmd_fixcam"/>
 		</member>
 		<member name="F:ElevadoresNeon">
+			<referrer name="Itter_OnGameModeInit"/>
 			<referrer name="SubirNeon"/>
 			<referrer name="DescerNeon"/>
-			<referrer name="Itter_OnGameModeInit"/>
 		</member>
 		<member name="F:ElevatorBoostTimer">
 			<referrer name="OnDynamicObjectMoved"/>
@@ -4355,8 +4355,8 @@
 			<referrer name="cmd_servico"/>
 		</member>
 		<member name="F:MilNonRepeatTasks">
-			<referrer name="CompletarNonRepMilestone"/>
 			<referrer name="OnDialogResponse"/>
+			<referrer name="CompletarNonRepMilestone"/>
 		</member>
 		<member name="F:Mobile">
 			<referrer name="ChecarCreditos"/>
@@ -4811,7 +4811,6 @@
 			<referrer name="MinhaOrg"/>
 			<referrer name="AddMembro"/>
 			<referrer name="DelMembro"/>
-			<referrer name="CompletarNonRepMilestone"/>
 			<referrer name="AtualizarTextDraws"/>
 			<referrer name="Cancelando"/>
 			<referrer name="PedidoConcluido"/>
@@ -5262,6 +5261,7 @@
 			<referrer name="LoadAdminTimes"/>
 			<referrer name="SaveAdminTimes"/>
 			<referrer name="cmd_colherplantacao"/>
+			<referrer name="CompletarNonRepMilestone"/>
 		</member>
 		<member name="F:Player@YSII_Ag">
 			<referrer name="SSCANF_OnPlayerConnect"/>
@@ -7548,9 +7548,9 @@
 			<referrer name="islegalcarmod"/>
 		</member>
 		<member name="F:levelexp">
-			<referrer name="CompletarNonRepMilestone"/>
 			<referrer name="ShowStats"/>
 			<referrer name="PayDay"/>
+			<referrer name="CompletarNonRepMilestone"/>
 		</member>
 		<member name="F:mensagens">
 			<referrer name="Mensagens"/>
@@ -8079,9 +8079,9 @@
 			<referrer name="main"/>
 		</member>
 		<member name="F:timeFixer">
+			<referrer name="cmd_timefix"/>
 			<referrer name="GetTimeFix"/>
 			<referrer name="GetTimeFix2"/>
-			<referrer name="cmd_timefix"/>
 		</member>
 		<member name="F:uselessFloat">
 			<tagname value="Float"/>
@@ -11150,7 +11150,6 @@
 			<attribute name="public"/>
 			<stacksize value="332"/>
 			<referrer name="Streamer_OnPlayerEnterCP"/>
-			<referrer name="Streamer_OnPlayerEnterRaceCP"/>
 			<referrer name="OnPlayerLogin"/>
 			<referrer name="OnDialogResponse"/>
 			<referrer name="cmd_darlider"/>
@@ -13653,9 +13652,9 @@
 		<member name="M:DescerNeon" syntax="DescerNeon(playerid)">
 			<attribute name="public"/>
 			<stacksize value="11"/>
+			<referrer name="OnDialogResponse"/>
 			<referrer name="NeonAdded"/>
 			<referrer name="NeonRemoved"/>
-			<referrer name="OnDialogResponse"/>
 			<dependency name="ElevadoresNeon"/>
 			<dependency name="IsAtNeonShop"/>
 			<dependency name="MoveDynamicObject"/>
@@ -14424,7 +14423,6 @@
 		<member name="M:GameTextForPlayer" syntax="GameTextForPlayer(playerid, string[], time, style)">
 			<attribute name="native"/>
 			<referrer name="EnviarEmail"/>
-			<referrer name="CompletarNonRepMilestone"/>
 			<referrer name="Bangu"/>
 			<referrer name="BanguBot"/>
 			<referrer name="OnPlayerEnterFood"/>
@@ -14476,6 +14474,7 @@
 			<referrer name="StopSpectate"/>
 			<referrer name="cmd_irpix"/>
 			<referrer name="CheckBizEntranceExit"/>
+			<referrer name="CompletarNonRepMilestone"/>
 			<param name="playerid">
 			</param>
 			<param name="string">
@@ -16672,11 +16671,11 @@
 		<member name="M:GivePlayerCash" syntax="GivePlayerCash(playerid, cash)">
 			<attribute name="public"/>
 			<stacksize value="4"/>
-			<referrer name="CompletarNonRepMilestone"/>
 			<referrer name="OnDialogResponse"/>
 			<referrer name="cmd_comprarveiculo"/>
 			<referrer name="cmd_cash"/>
 			<referrer name="cmd_darcash"/>
+			<referrer name="CompletarNonRepMilestone"/>
 			<dependency name="AtualizarTextDraws"/>
 			<dependency name="Player"/>
 			<dependency name="Player"/>
@@ -16690,7 +16689,6 @@
 		<member name="M:GivePlayerGP" syntax="GivePlayerGP(playerid, gp)">
 			<attribute name="public"/>
 			<stacksize value="7"/>
-			<referrer name="CompletarNonRepMilestone"/>
 			<referrer name="Punir"/>
 			<referrer name="ResetPlayerCars"/>
 			<referrer name="guerrat"/>
@@ -16770,6 +16768,7 @@
 			<referrer name="Pay"/>
 			<referrer name="CheckBizEntranceExit"/>
 			<referrer name="cmd_plantar"/>
+			<referrer name="CompletarNonRepMilestone"/>
 			<dependency name="GivePlayerMoney"/>
 			<dependency name="Player"/>
 			<dependency name="Player"/>
@@ -17527,9 +17526,9 @@
 		<member name="M:IsAtNeonShop" syntax="IsAtNeonShop(playerid)">
 			<attribute name="public"/>
 			<stacksize value="7"/>
+			<referrer name="cmd_neon"/>
 			<referrer name="SubirNeon"/>
 			<referrer name="DescerNeon"/>
-			<referrer name="cmd_neon"/>
 			<dependency name="IsPlayerInRangeOfPoint"/>
 			<param name="playerid">
 			</param>
@@ -19805,8 +19804,6 @@
 		</member>
 		<member name="M:MoveDynamicObject" syntax="MoveDynamicObject(objectid, x, y, z, speed, rx, ry, rz)">
 			<attribute name="native"/>
-			<referrer name="SubirNeon"/>
-			<referrer name="DescerNeon"/>
 			<referrer name="CriarExplosao"/>
 			<referrer name="CriarExplosaod"/>
 			<referrer name="PortaoCassino"/>
@@ -19825,6 +19822,8 @@
 			<referrer name="CheckGates"/>
 			<referrer name="MoveTAATarget"/>
 			<referrer name="RobCofrePorta"/>
+			<referrer name="SubirNeon"/>
+			<referrer name="DescerNeon"/>
 			<param name="objectid">
 			</param>
 			<param name="x">
@@ -21721,7 +21720,6 @@
 			<dependency name="pCarSkill"/>
 			<dependency name="pCarTime"/>
 			<dependency name="pCigarro"/>
-			<dependency name="pCompletedNonRepTask"/>
 			<dependency name="pConnectTime"/>
 			<dependency name="pContractTime"/>
 			<dependency name="pCookSkill"/>
@@ -23264,12 +23262,12 @@
 		<member name="M:PlayerPlayMusic" syntax="PlayerPlayMusic(playerid)">
 			<attribute name="public"/>
 			<stacksize value="7"/>
-			<referrer name="CompletarNonRepMilestone"/>
 			<referrer name="PayDay"/>
 			<referrer name="cmd_comprarcasa"/>
 			<referrer name="cmd_alugarcasa"/>
 			<referrer name="cmd_comprarempresa"/>
 			<referrer name="ComprarEmpresaCustom"/>
+			<referrer name="CompletarNonRepMilestone"/>
 			<dependency name="IsPlayerConnected"/>
 			<dependency name="PlayerPlaySound"/>
 			<dependency name="SetTimerEx"/>
@@ -23281,9 +23279,6 @@
 			<attribute name="native"/>
 			<referrer name="Binco_OnPlayerClickTextDraw"/>
 			<referrer name="Binco_OPCPTDraw"/>
-			<referrer name="NeonAdded"/>
-			<referrer name="NeonRemoved"/>
-			<referrer name="CompletarNonRepMilestone"/>
 			<referrer name="Checkpedagio"/>
 			<referrer name="StartPaintball"/>
 			<referrer name="StartKarting"/>
@@ -23334,6 +23329,9 @@
 			<referrer name="PlaySoundForPlayer"/>
 			<referrer name="AddFlitsPaal"/>
 			<referrer name="CheckAlarmArea"/>
+			<referrer name="NeonAdded"/>
+			<referrer name="NeonRemoved"/>
+			<referrer name="CompletarNonRepMilestone"/>
 			<param name="playerid">
 			</param>
 			<param name="soundid">
@@ -26073,14 +26071,11 @@
 		</member>
 		<member name="M:SendClientMessage" syntax="SendClientMessage(playerid, color, message[])">
 			<attribute name="native"/>
-			<referrer name="NeonAdded"/>
-			<referrer name="NeonRemoved"/>
 			<referrer name="DuasEquipes"/>
 			<referrer name="LimparChat"/>
 			<referrer name="EnviarEmail"/>
 			<referrer name="AddMembro"/>
 			<referrer name="AddApreendido"/>
-			<referrer name="CompletarNonRepMilestone"/>
 			<referrer name="Pedindo"/>
 			<referrer name="Aceitando"/>
 			<referrer name="Cancelando"/>
@@ -26721,6 +26716,9 @@
 			<referrer name="cmd_plantar"/>
 			<referrer name="cmd_colherplantacao"/>
 			<referrer name="cmd_queimarplantacao"/>
+			<referrer name="NeonAdded"/>
+			<referrer name="NeonRemoved"/>
+			<referrer name="CompletarNonRepMilestone"/>
 			<param name="playerid">
 			</param>
 			<param name="color">
@@ -26731,7 +26729,6 @@
 		</member>
 		<member name="M:SendClientMessageToAll" syntax="SendClientMessageToAll(color, message[])">
 			<attribute name="native"/>
-			<referrer name="CompletarNonRepMilestone"/>
 			<referrer name="Punir"/>
 			<referrer name="Aviso"/>
 			<referrer name="CheckGod2"/>
@@ -26793,6 +26790,7 @@
 			<referrer name="AbrirEvento"/>
 			<referrer name="cmd_editareleicao"/>
 			<referrer name="EndRace"/>
+			<referrer name="CompletarNonRepMilestone"/>
 			<param name="color">
 			</param>
 			<param name="message">
@@ -27168,14 +27166,14 @@
 		</member>
 		<member name="M:SetEngine" syntax="SetEngine(vehicleid, on)">
 			<stacksize value="18"/>
-			<referrer name="NeonAdded"/>
-			<referrer name="NeonRemoved"/>
 			<referrer name="LoadConceCars"/>
 			<referrer name="OnPlayerStateChange"/>
 			<referrer name="Fillup"/>
 			<referrer name="OnDialogResponse"/>
 			<referrer name="cmd_alugarcarro"/>
 			<referrer name="cmd_abastecer"/>
+			<referrer name="NeonAdded"/>
+			<referrer name="NeonRemoved"/>
 			<dependency name="GetVehicleParamsEx"/>
 			<dependency name="SetVehicleParamsFixed"/>
 			<dependency name="VehicleInfo"/>
@@ -29684,7 +29682,6 @@
 			<dependency name="AutoEscolaCars"/>
 			<dependency name="BoatTestCP"/>
 			<dependency name="CPorder"/>
-			<dependency name="CompletarNonRepMilestone"/>
 			<dependency name="DisablePlayerRaceCheckpoint"/>
 			<dependency name="DriverTestCP"/>
 			<dependency name="EndRace"/>
@@ -43767,7 +43764,6 @@
 			<referrer name="DelMembro"/>
 			<referrer name="DelApreendido"/>
 			<referrer name="AddApreendido"/>
-			<referrer name="CompletarNonRepMilestone"/>
 			<referrer name="AtualizarTextDraws"/>
 			<referrer name="Pedindo"/>
 			<referrer name="Aceitando"/>
@@ -44286,6 +44282,7 @@
 			<referrer name="SavePlantacao"/>
 			<referrer name="cmd_colherplantacao"/>
 			<referrer name="cmd_queimarplantacao"/>
+			<referrer name="CompletarNonRepMilestone"/>
 			<param name="output">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -44433,11 +44430,11 @@
 		<member name="M:gettime" syntax="gettime(&amp;hour, &amp;minute, &amp;second)">
 			<attribute name="native"/>
 			<referrer name="DOF2_MakeBackup"/>
-			<referrer name="GetTimeFix"/>
-			<referrer name="GetTimeFix2"/>
 			<referrer name="Streamer_OnPlayerDisconnect"/>
 			<referrer name="OnPlayerStateChange"/>
 			<referrer name="OnPlayerLogin"/>
+			<referrer name="GetTimeFix"/>
+			<referrer name="GetTimeFix2"/>
 			<param name="hour">
 				<paraminfo> &amp; </paraminfo>
 			</param>

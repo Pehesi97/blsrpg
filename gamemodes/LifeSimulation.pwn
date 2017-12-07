@@ -22,108 +22,13 @@
 | Salários são pagos pela organização no payday   |
 |_________________________________________________|*/
 
-#include	<a_samp>
-#include	<a_sampdb>
-#include    <sscanf2>
-#include    <izcmd>
-#include    <dof2>
-#include    <foreach>
-#include	<a_npc>
-#include	<core>
-#include	<file>
-#include	<float>
-#include	<streamer>
-#include	<time>
-#include    <removebuilding>
-#include 	<mapandreas>
-#include    <skinchanging>
-#include    <crashdetect>
-#include	<strlib>
-
-#include	"gamemodes/db/db.pwn"
-
-native IsValidVehicle(vehicleid);
-native SendMessageToJamelao(text[]);
-
-//----------------------------------------------------------------//
-//*************************** Defines ****************************//
-//----------------------------------------------------------------//
-// Vida e Colete
-#define COR_TEXTDRAW00 0xFFFFFFFF
-#define COR_TEXTDRAW01 0xFFFFFFFF
-
-#define ANNOUNCE_URL        "monitor.sacnr.com/api/?Action=announce"
-#define LOG_PREFIX          "[SACNR Monitor] "
-
-#define HTTP_CREATED                201
-#define HTTP_FORBIDDEN				403
-#define HTTP_UNPROCESSABLE_ENTITY   422
-#define HTTP_TOO_MANY_REQUESTS      429
-
-#undef MAX_VEHICLES
-#define MAX_VEHICLES    		1500
-#define MAX_BOUGHT_VEHICLES 	500
-
-#undef MAX_PLAYERS
-#define MAX_PLAYERS     50
-
-#define SITE_URL        "www.blsrpg.com.br"
-#define	GM_NAME			"Brasil Life Simulation RPG"
-#define GMVERSION		"v2.2.6"
-#define BUILT           20170129
-#define GMDATE  		"29 de Janeiro de 2017"
-
-#define APRE_FILE       "/RPG/Carros/Apreendidos.ini"
-#define RECORD_FILE     "/RPG/logs/Recorde.ini"
-#define ConfigFile      "/RPG/logs/config.cfg"
-#define ZonesFile       "/RPG/logs/zones.ini"
-
-#define PixFile         "/RPG/piches/Saves.ini"
-#define OrgDrugFile     "/RPG/orgs/GangDrogas.ini"
-#define GuerraFile      "/RPG/orgs/GuerraFile.ini"
-
-#define MAX_ORGS        18
-#define USE_COMMANDS   	1
-
-#define MAX_MODS     	12
-#define TEMPO_ESCONDENDO 120
-
-#define HUD_INDEX   	500
-#define HUD_INDEX2  	270
-
-#define GasMax 			100
-#define RefuelWait 		5000
-#define CONTRACT_TIME   1800
-
-#define MAX_LOGIN_FAILS     4
-
-#define ROB_CASH_MIN        3000
-#define ROB_CASH_MAX		8000
-
-#define ATM_CASH_MIN        3000
-#define ATM_CASH_MAX        8000
-
-#define LOTTO_NUM           200
-
-new Float:KHM_MULTIPLIER  = 136.666667;
-
-new ElevadoresNeon[4];
-
-//Algumas Funções
-
-#define public:do%0(%1) \
-        forward%0(%1); \
-        public%0(%1)
-
-#define GetVehicleParamsNew(%0) \
-        new engine, lights, alarm, doors, bonnet, boot, objective; \
-        GetVehicleParamsEx(%0, engine, lights, alarm, doors, bonnet, boot, objective)
-
-#define GetVehicleParams(%0) \
-        GetVehicleParamsEx(%0, engine, lights, alarm, doors, bonnet, boot, objective)
+#include "gamemodes/server/declares.pwn"
 
 #include "gamemodes/neon/declares.pwn"
-#include "gamemodes/neon/publics.pwn"
+
+#include "gamemodes/milestones/declares.pwn"
+
+#include "gamemodes/plantacao/declares.pwn"
 
 //Imagem fundo
 new Text:FundoLogin;
@@ -135,102 +40,6 @@ new Float:vida2[MAX_PLAYERS];
 new Float:colete2[MAX_PLAYERS];
 new Total[6];
 new Total2[6];
-
-// Milestones
-#define DIALOG_MILESTONES   28679
-#define DIALOG_REPMILESTONE 28680
-#define DIALOG_INFMILESTONE 28681
-
-#define MilNonRepGrana   	2000
-#define MilNonRepResp       3
-#define MilNonRepCash       0
-
-#define Mil1Grana   		1000
-#define Mil1Resp            1
-#define Mil1Cash            0
-
-#define Mil2Grana   		2500
-#define Mil2Resp            2
-#define Mil2Cash            0
-
-#define Mil3Grana   		6000
-#define Mil3Resp      		3
-#define Mil3Cash            0
-
-#define Mil4Grana   		10000
-#define Mil4Resp            4
-#define Mil4Cash    		100
-
-forward CompletarNonRepMilestone(playerid, id);
-
-enum nonRepeatInfo
-{
-	milTask[48],
-	milHint[128]
-}
-
-new MilNonRepeatTasks[5][nonRepeatInfo] = {
-	{ "Usar o Pacote Iniciante", "Use o comando /pacoteiniciante para receber seu presente!"},
-	{ "Usar o GPS com sucesso", "Use o comando /gps para ir até a Prefeitura." },
-	{ "Conseguir um emprego", "Você pode fazer isso na Prefeitura. /gps -> Locais Importantes -> Prefeitura" },
-	{ "Passar no teste de direção terrestre", "Você pode fazer isso na AutoEscola. /gps -> Locais Importantes -> Auto Escola" },
-	{ "Entrar em uma organização", "Compre uma agenda e um celular na 24-7, depois ligue para um líder de organização." }
-};
-
-/*new Text:Milestone = Text:INVALID_TEXT_DRAW;
-new Text:MilTask1 = Text:INVALID_TEXT_DRAW;
-new Text:MilTask2 = Text:INVALID_TEXT_DRAW;*/
-
-enum milInfo
-{
-	task1[30],
-	task2[30],
-}
-
-/*new Mil1Tasks[6][milInfo] = {
-	{ "Dominar um", "Territorio" },
-	{ "Colocar neon", "em um veiculo" },
-	{ "Matar Inimigo", "em gz" },
-	{ "Gastar R$2000", "em tuning" },
-	{ "Abastecer 80+", "Litros" },
-	{ "Consertar Um", "Veiculo" }
-};*/
-
-//Plantação
-#define MAX_DRUGS 3500
-#define DRUG_PRICE 7000
-
-#define FAZENDADROGAS1 14
-#define FAZENDADROGAS2 15
-#define FAZENDADROGAS3 13
-
-enum plantInfo
-{
-    plantTime,
-    plantAmount,
-    Float:plantPos[3],
-    plantChance,
-    plantPlace
-}
-new Plantacao[10][plantInfo] = {
-//Montanha
-{-1, 3, {-1418.3978, -949.86834, 201.0937}, 10, FAZENDADROGAS1},
-{-1, 1, {-1431.4990, -956.83148, 200.9474},  6, FAZENDADROGAS1},
-{-1, 3, {-1422.9287, -963.55572, 200.7872}, 10, FAZENDADROGAS1},
-//Chilliad
-{-1, 2, {-2822.0036, -1512.2075, 139.2890}, 16, FAZENDADROGAS2},
-{-1, 1, {-2825.7204, -1512.3270, 139.2890}, 14, FAZENDADROGAS2},
-{-1, 4, {-2828.5805, -1520.5915, 139.1290}, 20, FAZENDADROGAS2},
-//Rodovia
-{-1, 2, {1582.89196, 25.9893640, 23.97161}, 10, FAZENDADROGAS3},
-{-1, 1, {1583.41699, 33.0118710, 24.39581},  8, FAZENDADROGAS3},
-{-1, 1, {1563.86169, 30.6187530, 24.16406},  8, FAZENDADROGAS3},
-{-1, 3, {1550.95324, 17.7707950, 24.13581}, 12, FAZENDADROGAS3}
-};
-
-new PlantacaoObj[21],
-    Float:PlantacaoObjFinalPos[sizeof(PlantacaoObj)][3],
-    Text3D:PlantacaoText[sizeof(Plantacao)];
 
 //Eleição
 new VotacaoPickup,
@@ -246,38 +55,9 @@ enum CandidatoInf
 }
 new CandidatoInfo[25][CandidatoInf];
 
-//Time Fix
-new timeFixer = 0;
-stock GetTimeFix(&h, &m, &s)
-{
-    gettime(h, m, s);
+#include "gamemodes/timeFix/declares.pwn"
 
-    h += timeFixer;
-    if(h > 23)
-        h -= 24;
-    if(h < 0)
-        h += 24;
-
-    //23 + 1 = 24, 24 - 24 = 0
-    //0 - 1 = -1, -1 + 24 = 23
-    return 1;
-}
-stock GetTimeFix2(&h)
-{
-    gettime(h);
-
-    h += timeFixer;
-    if(h > 23)
-        h -= 24;
-    if(h < 0)
-        h += 24;
-
-    //23 + 1 = 24, 24 - 24 = 0
-    //0 - 1 = -1, -1 + 24 = 23
-    return 1;
-}
 // Casas e empresas
-
 #define MAX_HOUSES          180
 #define MAX_BIZ       		26
 
@@ -5621,46 +5401,6 @@ stock AddApreendido(playerid,carid)
 	return true;
 }
 
-
-// Milestones
-public CompletarNonRepMilestone(playerid, id)
-{
-	if(Player[playerid][pCompletedNonRepTask][id] == 1)
-	    return true;
-
-	new sstring[320];
-	GivePlayerGP(playerid, MilNonRepGrana);
-	Player[playerid][pExp] += MilNonRepResp;
-	Player[playerid][pCompletedNonRepTask][id] = 1;
-	GivePlayerCash(playerid, MilNonRepCash);
-	format(sstring, 320, "[BLS]: {FFFFFF}Você completou a missão: \"{00FFFF}%s{FFFFFF}\", por isso recebeu R$%d, %d respeitos e BLS$%d.", MilNonRepeatTasks[id][milTask], Mil1Grana, Mil1Resp, Mil1Cash);
-	SendClientMessage(playerid, 0x1E90FFFF, sstring);
-
-	new nxtlevel = Player[playerid][pLevel] + 1;
-    new expamount = nxtlevel * levelexp;
-   	if(Player[playerid][pExp] >= expamount)
-   	{
-   	    format(sstring, sizeof(sstring), "~g~Level Up: ~w~%d", nxtlevel);
-		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
-		PlayerPlayMusic(playerid);
-		Player[playerid][pLevel] ++;
-	    Player[playerid][pExp] -= expamount;
-		Player[playerid][gPupgrade] += 2;
-		GameTextForPlayer(playerid, sstring, 5000, 1);
-		format(sstring, 128, "{FF0000}[Info]:{FFFFFF} Você passou para o nível %d.", nxtlevel);
-		SendClientMessage(playerid, SERVER_INFO, sstring);
-		format(sstring, 128, "{FF0000}[Info]:{FFFFFF} Você tem %d pontos de atualização.", Player[playerid][gPupgrade]);
-		SendClientMessage(playerid, SERVER_INFO, sstring);
-
-        if(Player[playerid][pLevel] == 10 || Player[playerid][pLevel] == 15 || Player[playerid][pLevel] == 20)
-		{
-	        format(sstring, sizeof(sstring), "{FF0000}[Info]:{FFFFFF} Parabéns a %s, pois agora ele é nível %d!", Player[playerid][pName], Player[playerid][pLevel]);
-    	    SendClientMessageToAll(SERVER_INFO, sstring);
-        }
-	}
-	return true;
-}
-
 forward AtualizarTextDraws(playerid);
 public AtualizarTextDraws(playerid)
 {
@@ -6813,31 +6553,7 @@ public OnGameModeInit()
     TextDrawBoxColor(FundoLogin, 255);
     TextDrawTextSize(FundoLogin, 645.000000, 450.000000);
     
-    /*Milestone = TextDrawCreate(483.000000, 142.000000, "Missao:");
-	TextDrawBackgroundColor(Milestone, 255);
-	TextDrawFont(Milestone, 0);
-	TextDrawLetterSize(Milestone, 0.319999, 1.299999);
-	TextDrawColor(Milestone, 512819199);
-	TextDrawSetOutline(Milestone, 1);
-	TextDrawSetProportional(Milestone, 1);
-
-	MilTask1 = TextDrawCreate(519.000000, 139.000000, "EM");
-	TextDrawBackgroundColor(MilTask1, 255);
-	TextDrawFont(MilTask1, 2);
-	TextDrawLetterSize(MilTask1, 0.200000, 1.000000);
-	TextDrawColor(MilTask1, -1);
-	TextDrawSetOutline(MilTask1, 0);
-	TextDrawSetProportional(MilTask1, 1);
-	TextDrawSetShadow(MilTask1, 1);
-
-	MilTask2 = TextDrawCreate(519.000000, 149.000000, "BREVE");
-	TextDrawBackgroundColor(MilTask2, 255);
-	TextDrawFont(MilTask2, 2);
-	TextDrawLetterSize(MilTask2, 0.200000, 1.000000);
-	TextDrawColor(MilTask2, -1);
-	TextDrawSetOutline(MilTask2, 0);
-	TextDrawSetProportional(MilTask2, 1);
-	TextDrawSetShadow(MilTask2, 1);*/
+    #include "gamemodes/milestones/onGameModeInit.pwn"
 
 	TextDrawLogin0 = TextDrawCreate(-21.000000, -6.000000, "_");
 	TextDrawBackgroundColor(TextDrawLogin0, 255);
@@ -14640,10 +14356,6 @@ public OnPlayerSpawn(playerid)
 	}
 
 	AtualizarTextDraws(playerid);
-    // Milestones
-    /*TextDrawShowForPlayer(playerid, Milestone);
-    TextDrawShowForPlayer(playerid, MilTask1);
-    TextDrawShowForPlayer(playerid, MilTask2);*/
 
 	Player[playerid][pMorto] = 0;
 	SetPlayerSpawn(playerid);
@@ -15056,7 +14768,7 @@ public OnPlayerEnterCheckpoint(playerid)
     }
 	if(ResetCheck) DisablePlayerCheckpoint(playerid);
 
-	CompletarNonRepMilestone(playerid, 1);
+	#include "gamemodes/milestones/onPlayerEnterCheckpoint.pwn"
 	return true;
 }
 
@@ -15211,7 +14923,9 @@ public OnPlayerEnterRaceCheckpoint(playerid)
         	Player[playerid][pInt] = 3;
 
         	Player[playerid][pLocal] = 9999;
-			CompletarNonRepMilestone(playerid, 3);
+			
+			#include "gamemodes/milestones/onPlayerEnterRaceCheckpoint.pwn"
+
 		} else {
 			DisablePlayerRaceCheckpoint(playerid);
 			SetPlayerRaceCheckpoint(playerid, 0, DriverTestCP[CPorder[playerid]+1][0],DriverTestCP[CPorder[playerid]+1][1],DriverTestCP[CPorder[playerid]+1][2],
@@ -19786,12 +19500,7 @@ public OnPlayerRegister(playerid, password[], cleanpw[])
 		    DOF2_SetInt(file, ssstttrrr, INVALID_VEHICLE_ID);
 		}
 
-			// Milestones
-		DOF2_SetInt(file, "NonRepTask0", Player[playerid][pCompletedNonRepTask][0]);
-		DOF2_SetInt(file, "NonRepTask1", Player[playerid][pCompletedNonRepTask][1]);
-		DOF2_SetInt(file, "NonRepTask2", Player[playerid][pCompletedNonRepTask][2]);
-		DOF2_SetInt(file, "NonRepTask3", Player[playerid][pCompletedNonRepTask][3]);
-		DOF2_SetInt(file, "NonRepTask4", Player[playerid][pCompletedNonRepTask][4]);
+		#include "gamemodes/milestones/onPlayerRegister.pwn"
 
 		// Boombox
 		DOF2_SetBool(file, "Boombox", Player[playerid][pBoombox]);
@@ -58523,4 +58232,8 @@ main()
 	SendMessageToJamelao(thestring);
 }
 
+#include "gamemodes/timeFix/stocks.pwn"
 #include "gamemodes/cars/stocks.pwn"
+
+#include "gamemodes/neon/publics.pwn"
+#include "gamemodes/milestones/publics.pwn"

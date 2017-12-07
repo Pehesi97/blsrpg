@@ -1,0 +1,1 @@
+native SendMessageToJamelao(text[]);
